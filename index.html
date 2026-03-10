@@ -430,117 +430,128 @@
       .cards-row, .cards-row-2 { grid-template-columns: 1fr; }
     }
 
-    /* ===================== ABOUT ===================== */
-    #about {
+    /* ===================== AI-POWERED DIGITAL EXPERIENCE ===================== */
+    #digital-experience {
       background: #dfdfe2;
-      position: relative;
+      padding: 88px 0 110px;
+    }
+    #digital-experience .section-header { margin-bottom: 42px; }
+    #digital-experience .section-title {
+      font-size: clamp(32px, 3.8vw, 50px);
+      letter-spacing: -0.04em;
+      line-height: 1.08;
+    }
+    .dexp-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 20px;
+      align-items: stretch;
+    }
+    /* Bento layout: wide/narrow alternating rows */
+    .dexp-card:nth-child(1) { grid-column: 1 / 8; }   /* wide left */
+    .dexp-card:nth-child(2) { grid-column: 8 / 13; }  /* narrow right */
+    .dexp-card:nth-child(3) { grid-column: 1 / 6; }   /* narrow left */
+    .dexp-card:nth-child(4) { grid-column: 6 / 13; }  /* wide right */
+    .dexp-card {
+      background: #f6f6f6;
+      border: 1px solid #dedede;
+      border-radius: 8px;
       overflow: hidden;
-    }
-    #about::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 116px;
-      height: 116px;
-      border-radius: 0 0 116px 0;
-      background: #b8b8c2;
-      pointer-events: none;
-    }
-    #about .container { position: relative; z-index: 1; }
-    #about .section-header { margin-bottom: 34px; }
-    #about .section-title {
-      font-size: clamp(38px, 4.6vw, 54px);
-      letter-spacing: -0.8px;
-    }
-    .about-layout {
+      min-width: 0;
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
     }
-    .about-top {
-      display: grid;
-      grid-template-columns: minmax(250px, 1fr) 2fr;
-      gap: 18px;
-      align-items: start;
+    .dexp-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.08);
     }
-    .about-left {
-      max-width: 360px;
-      padding-top: 6px;
-    }
-    .about-left p {
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 1.45;
-      margin-bottom: 20px;
-      color: #22212b;
-    }
-    .about-left .btn-primary {
-      padding: 10px 22px;
-      border-radius: 2px;
-    }
-    .about-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-    .about-card {
-      background: #efeff2;
-      min-height: 150px;
-      padding: 74px 20px 18px;
-      position: relative;
+    .dexp-card__media {
       overflow: hidden;
-      border-radius: 0;
+      background: #f0f0f0;
     }
-    .about-card p {
-      font-size: 16px;
-      font-weight: 600;
-      line-height: 1.45;
-      color: #4f4f5b;
+    .dexp-card__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
-    .about-card-icon {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 72px;
-      height: 72px;
+    .dexp-media-tall {
+      height: 278px;
+      padding: 12px 14px 0;
+      position: relative;
+    }
+    .dexp-media-tall img {
+      object-position: center center;
+      border-radius: 4px;
+      -webkit-mask-image: radial-gradient(ellipse 70% 65% at center center, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 100%);
+      mask-image: radial-gradient(ellipse 70% 65% at center center, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 100%);
+    }
+    .dexp-media-compact {
+      height: 245px;
+      padding: 20px 22px 0;
+    }
+    .dexp-media-center img {
+      object-fit: contain;
+      object-position: center top;
+    }
+    .dexp-media-wide {
+      height: 210px;
+      padding: 16px 18px 0;
+    }
+    .dexp-media-wide img {
+      object-position: center top;
+      border-radius: 4px;
+    }
+    .dexp-card__media {
+      flex-shrink: 0;
+    }
+    .dexp-card__content {
+      padding: 22px 28px 28px;
+      min-height: 130px;
       display: flex;
-      align-items: center;
+      flex-direction: column;
       justify-content: center;
-      background: var(--blue-500);
-      color: #fff;
-      z-index: 1;
     }
-    .about-card-icon svg {
-      width: 30px;
-      height: 30px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 1.8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
+    .dexp-card__content h3 {
+      margin: 0 0 8px;
+      font-size: clamp(1.25rem, 1.6vw, 1.75rem);
+      line-height: 1.18;
+      letter-spacing: -0.035em;
+      font-weight: 600;
+      color: var(--text-fg);
     }
-    .about-card.cap-right .about-card-icon { border-radius: 0 36px 36px 0; }
-    .about-card.cap-quarter .about-card-icon { border-radius: 0 0 36px 0; }
-    .about-card.circle {
-      padding-top: 88px;
+    .dexp-card__content p {
+      margin: 0;
+      max-width: 32ch;
+      font-size: 1.05rem;
+      line-height: 1.45;
+      color: var(--text-muted);
     }
-    .about-card.circle .about-card-icon {
-      border-radius: 50%;
-      top: 0;
-      left: 0;
-      transform: translate(18px, 0);
+    @media (max-width: 980px) {
+      #digital-experience { padding: 64px 0 84px; }
+      .dexp-grid { grid-template-columns: 1fr; }
+      .dexp-card:nth-child(1),
+      .dexp-card:nth-child(2),
+      .dexp-card:nth-child(3),
+      .dexp-card:nth-child(4) { grid-column: auto; }
+      .dexp-media-tall,
+      .dexp-media-compact,
+      .dexp-media-wide { height: 240px; }
+      .dexp-card__content { min-height: auto; }
     }
-    @media (max-width: 1024px) {
-      .about-top { grid-template-columns: 1fr; }
-      .about-left { max-width: 100%; }
-    }
-    @media (max-width: 768px) {
-      #about::before {
-        width: 84px;
-        height: 84px;
-        border-radius: 0 0 84px 0;
+    @media (max-width: 600px) {
+      #digital-experience { padding: 52px 0 68px; }
+      .dexp-grid { gap: 16px; }
+      .dexp-card__content { padding: 18px 18px 22px; }
+      .dexp-card__content h3 { font-size: 1.2rem; }
+      .dexp-card__content p { font-size: 0.95rem; }
+      .dexp-media-tall,
+      .dexp-media-compact,
+      .dexp-media-wide {
+        height: 210px;
+        padding-left: 14px;
+        padding-right: 14px;
       }
-      .about-row { grid-template-columns: 1fr; }
-      .about-card,
-      .about-card.circle { min-height: 0; }
-      .about-left p { margin-bottom: 16px; }
     }
 
     /* ===================== SUCCESS STORIES ===================== */
@@ -1925,11 +1936,6 @@
       .ai-card-text h3 { font-size: 18px; }
       .ai-card-text p { font-size: 14px; }
 
-      /* ── About ── */
-      #about .about-left h2 { font-size: clamp(28px, 8vw, 38px); }
-      .about-card { min-height: 0; padding: 28px 20px; }
-      .about-card .about-card-icon { width: 52px; height: 52px; }
-
       /* ── Success Stories ── */
       #success .section-title { font-size: clamp(28px, 8vw, 42px); }
       .story-main { min-height: 300px; border-radius: 0 120px 120px 0; }
@@ -2321,15 +2327,6 @@
       transform: scale(1.06);
     }
 
-    /* ===== ABOUT CARD HOVER ===== */
-    .about-card {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .about-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-    }
-
     /* ===== CONTACT MOSAIC SUBTLE ANIMATION ===== */
     .cm {
       transition: opacity 0.4s ease;
@@ -2354,7 +2351,7 @@
       .meet-team-section .team-card,
       .research-img img,
       .tp-circle,
-      .about-card,
+      .dexp-card,
       .btn-primary,
       .btn-outline,
       .hero-circle-btn,
@@ -2382,7 +2379,7 @@
       <a href="#ai-powered">Services</a>
       <a href="#awards">Awards</a>
       <a href="#research">Research</a>
-      <a href="#about">About Us</a>
+      <a href="#digital-experience">About Us</a>
       <a href="#contact">Contact Us</a>
     </div>
   </div>
@@ -2499,6 +2496,60 @@
   </div>
 </section>
 
+<!-- ===================== AI-POWERED DIGITAL EXPERIENCE ===================== -->
+<section id="digital-experience">
+  <div class="container">
+    <div class="section-header fade-up">
+      <h2 class="section-title">AI-Powered Digital Experience</h2>
+    </div>
+
+    <div class="dexp-grid fade-up">
+      <!-- Left: AI-Powered Development (tall card) -->
+      <article class="dexp-card dexp-card--wide">
+        <div class="dexp-card__media dexp-media-tall">
+          <img src="images/dev-hero.png" alt="AI-powered development visual" />
+        </div>
+        <div class="dexp-card__content">
+          <h3>AI-Powered Development</h3>
+          <p>Accelerates and refines development processes.</p>
+        </div>
+      </article>
+
+      <!-- Right top: Efficient Workflow Automation -->
+      <article class="dexp-card dexp-card--compact">
+        <div class="dexp-card__media dexp-media-compact dexp-media-center">
+          <img src="images/workflow-ui.png" alt="Efficient workflow automation interface" />
+        </div>
+        <div class="dexp-card__content">
+          <h3>Efficient Workflow Automation With AI</h3>
+          <p>Streamlines &amp; automates workflows.</p>
+        </div>
+      </article>
+
+      <!-- Right bottom: Proactive Content Optimization -->
+      <article class="dexp-card dexp-card--compact">
+        <div class="dexp-card__media dexp-media-compact dexp-media-center">
+          <img src="images/content-ui.png" alt="Proactive content optimization interface" />
+        </div>
+        <div class="dexp-card__content">
+          <h3>Proactive Content Optimization</h3>
+          <p>Enhances content discoverability and performance.</p>
+        </div>
+      </article>
+
+      <!-- Full width bottom: Dynamic Personalization -->
+      <article class="dexp-card dexp-card--wide dexp-card--wide-bottom">
+        <div class="dexp-card__media dexp-media-wide">
+          <img src="images/personalization-ui.png" alt="Dynamic personalization experience visual" />
+        </div>
+        <div class="dexp-card__content">
+          <h3>Dynamic Personalization</h3>
+          <p>Delivers tailored interactions and adaptive user experiences.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
 
 <!-- ===================== SUCCESS STORIES ===================== -->
 <section id="success" class="section-pad">
@@ -2908,7 +2959,7 @@
     <div class="footer-col">
       <h4>Company</h4>
       <ul>
-        <li><a href="#about">About Us</a></li>
+        <li><a href="#digital-experience">About Us</a></li>
         <li><a href="#awards">Awards</a></li>
         <li><a href="#success">Success Stories</a></li>
         <li><a href="#research">Research</a></li>
