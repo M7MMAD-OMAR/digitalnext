@@ -1445,8 +1445,8 @@
     /* ===================== MEET TEAM ===================== */
     .meet-team-section {
       position: relative;
-      overflow: hidden;
-      padding: 96px 28px 110px;
+      overflow: visible;
+      padding: 96px 28px 60px;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -1502,7 +1502,7 @@
       position: absolute;
       left: 14px;
       right: 14px;
-      bottom: 12px;
+      bottom: 0;
       padding: 16px 16px 14px;
       background: rgba(4, 4, 16, 0.78);
     }
@@ -1532,57 +1532,69 @@
     /* ===================== GET IN TOUCH CARD ===================== */
     .git-card {
       position: relative;
-      z-index: 10;
+      z-index: 100;
       margin-top: 60px;
-      margin-bottom: -140px;
+      transform: translateY(50%);
     }
     .git-card-inner {
       position: relative;
-      background: #8B0A1E;
-      border-radius: 16px;
+      background: #85040D;
+      border-radius: 4px;
       overflow: hidden;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      min-height: 280px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 56px;
+      gap: 4px;
+      min-height: 288px;
     }
     .git-card-text {
-      padding: 56px 52px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      gap: 16px;
+      align-items: flex-start;
+      gap: 24px;
+      width: 518px;
+      max-width: 100%;
       z-index: 1;
     }
     .git-card-text h2 {
-      font-size: clamp(28px, 3vw, 40px);
-      font-weight: 700;
-      color: #fff;
-      line-height: 1.15;
-      font-style: italic;
+      font-size: 36px;
+      font-weight: 600;
+      color: #FAFAFA;
+      line-height: 44px;
     }
     .git-card-text p {
-      font-size: 16px;
-      color: rgba(255,255,255,0.82);
-      line-height: 1.5;
-      max-width: 400px;
+      font-size: 20px;
+      color: #FAFAFA;
+      line-height: 30px;
+      max-width: 518px;
     }
     .git-card-btn {
       display: inline-flex;
+      justify-content: center;
       align-items: center;
       gap: 10px;
-      background: var(--blue-600);
+      background: #211E3B;
+      border: 2px solid #1C1932;
       color: #fff;
       font-size: 14px;
-      font-weight: 600;
-      padding: 14px 28px;
-      border-radius: 6px;
+      font-weight: 500;
+      padding: 10px 20px;
+      border-radius: 2px;
+      min-width: 48px;
       width: fit-content;
+      backdrop-filter: blur(3px);
       transition: opacity 0.2s;
     }
     .git-card-btn:hover { opacity: 0.88; }
-    .git-card-btn img { width: 16px; height: 16px; filter: brightness(0) invert(1); }
+    .git-card-btn img { width: 20px; height: 20px; filter: brightness(0) invert(1); }
     .git-card-img {
-      position: relative;
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 575px;
+      height: 100%;
+      opacity: 0.32;
     }
     .git-card-img img {
       width: 100%;
@@ -1590,12 +1602,18 @@
       object-fit: cover;
       display: block;
     }
-    @media (max-width: 900px) {
-      .git-card-inner { grid-template-columns: 1fr; }
-      .git-card-img { min-height: 200px; }
+    .git-card-inner::after {
+      content: '';
+      position: absolute;
+      left: -1px;
+      right: -1px;
+      bottom: -1px;
+      height: 1px;
+      background: #520308;
     }
-    @media (max-width: 768px) {
-      .git-card-text { padding: 40px 32px; }
+    @media (max-width: 900px) {
+      .git-card-inner { flex-direction: column; padding: 40px 32px; }
+      .git-card-img { position: absolute; width: 100%; }
     }
 
     /* ===================== INVITE / CONTACT SECTION ===================== */
@@ -1958,18 +1976,17 @@
       transition: box-shadow 0.35s ease;
     }
     .meet-team-section .team-image {
-      transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      filter: grayscale(100%);
+      transition: filter 0.5s ease;
     }
     .meet-team-section .team-card:hover .team-image {
-      transform: scale(1.06);
+      filter: grayscale(0%);
     }
     .meet-team-section .team-info {
-      transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                  background 0.35s ease,
+      transition: background 0.35s ease,
                   box-shadow 0.35s ease;
     }
     .meet-team-section .team-card:hover .team-info {
-      transform: translateY(-4px);
       background: rgba(4, 4, 16, 0.88);
       box-shadow: 0 -8px 24px rgba(133, 4, 13, 0.15);
     }
@@ -2838,8 +2855,8 @@
       <ul>
         <li><a href="/cdn-cgi/l/email-protection#432b262f2f2c03272a242a37222f2d263b376d202c2e"><img src="images/icon/envelope.svg" alt="" class="footer-icon" /><span class="__cf_email__" data-cfemail="a6cec3cacac9e6c2cfc1cfd2c7cac8c3ded288c5c9cb">[email&#160;protected]</span></a></li>
         <li><a href="#"><img src="images/icon/map-pin.svg" alt="" class="footer-icon" />Dubai, UAE</a></li>
-        <li><a href="#"><img src="images/icon/linkedin.svg" alt="" class="footer-icon" />LinkedIn ↗</a></li>
-        <li><a href="#"><img src="images/icon/x-logo.svg" alt="" class="footer-icon" />Twitter / X ↗</a></li>
+        <li><a href="#"><img src="images/icon/linkedin.svg" alt="" class="footer-icon" />LinkedIn</a></li>
+        <li><a href="#"><img src="images/icon/x-logo.svg" alt="" class="footer-icon" />Twitter / X</a></li>
       </ul>
     </div>
   </div>
