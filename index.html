@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https://images.unsplash.com data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; connect-src 'self'; frame-ancestors 'none';" />
   <title>Digital Next — Transformation, Optimization And Consultation</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -42,6 +43,20 @@
       --header-side-pad: 36px;
     --hero-circle-right: clamp(220px, 20vw, 320px);
       --hero-circle-bottom: clamp(20px, 4.5vh, 52px);
+
+      /* ===== UNIFIED DESIGN TOKENS ===== */
+      --radius-sm: 2px;       /* buttons, badges, small chips */
+      --radius-md: 4px;       /* cards, containers, inputs */
+      --card-bg: #F4F4F5;     /* unified card surface */
+      --card-bg-media: #EFEFEF; /* card media/image area */
+      --card-border: #E4E4E7; /* unified card border */
+      --card-pad: 24px 28px;  /* card content padding */
+      --section-py: 100px;    /* section vertical padding */
+      --grid-gap: 20px;       /* standard grid gap */
+      --gap-sm: 12px;         /* small internal gap */
+      --gap-md: 20px;         /* medium gap */
+      --gap-lg: 32px;         /* large gap */
+      --section-bg-alt: #DFDFE2; /* alternating section background */
     }
 
     /* ===== RESET ===== */
@@ -203,7 +218,7 @@
         right: 0;
         background: rgba(255,255,255,0.95);
         padding: 16px;
-        border-radius: 8px;
+        border-radius: var(--radius-md);
         box-shadow: 0 8px 24px rgba(0,0,0,0.12);
         gap: 0;
       }
@@ -388,11 +403,11 @@
 
     /* ===================== AI-POWERED ===================== */
     #ai-powered { background: var(--bg-subtle); }
-    .cards-grid { display: grid; gap: 24px; }
-    .cards-row { display: grid; grid-template-columns: 57.5fr 40.5fr; gap: 24px; }
-    .cards-row-2 { display: grid; grid-template-columns: 40.5fr 57.5fr; gap: 24px; }
+    .cards-grid { display: grid; gap: var(--grid-gap); }
+    .cards-row { display: grid; grid-template-columns: 57.5fr 40.5fr; gap: var(--grid-gap); }
+    .cards-row-2 { display: grid; grid-template-columns: 40.5fr 57.5fr; gap: var(--grid-gap); }
     .ai-card {
-      position: relative; border-radius: 2px;
+      position: relative; border-radius: var(--radius-md);
       overflow: hidden; min-height: 325px;
       display: flex; flex-direction: column; justify-content: flex-end;
     }
@@ -418,7 +433,7 @@
       position: absolute;
       inset: 0;
     }
-    .ai-card-text { position: relative; z-index: 2; padding: 36px 40px 34px; color: #fff; display: flex; flex-direction: column; gap: 6px; }
+    .ai-card-text { position: relative; z-index: 2; padding: 28px 28px 24px; color: #fff; display: flex; flex-direction: column; gap: 6px; }
     .ai-card-text h3 { font-size: 20px; font-weight: 600; line-height: 1.5; }
     .ai-card-text p  { font-size: 16px; font-weight: 400; line-height: 1.5; }
 
@@ -432,19 +447,19 @@
 
     /* ===================== AI-POWERED DIGITAL EXPERIENCE ===================== */
     #digital-experience {
-      background: #dfdfe2;
-      padding: 88px 0 110px;
+      background: var(--section-bg-alt);
+      padding: var(--section-py) 0;
     }
-    #digital-experience .section-header { margin-bottom: 42px; }
+    #digital-experience .section-header { margin-bottom: 48px; }
     #digital-experience .section-title {
-      font-size: clamp(32px, 3.8vw, 50px);
-      letter-spacing: -0.04em;
-      line-height: 1.08;
+      font-size: clamp(28px, 4vw, 50px);
+      letter-spacing: -0.5px;
+      line-height: 1.1;
     }
     .dexp-grid {
       display: grid;
       grid-template-columns: repeat(12, 1fr);
-      gap: 20px;
+      gap: var(--grid-gap);
       align-items: stretch;
     }
     /* Bento layout: wide/narrow alternating rows */
@@ -453,9 +468,9 @@
     .dexp-card:nth-child(3) { grid-column: 1 / 6; }   /* narrow left */
     .dexp-card:nth-child(4) { grid-column: 6 / 13; }  /* wide right */
     .dexp-card {
-      background: #f6f6f6;
-      border: 1px solid #dedede;
-      border-radius: 8px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-md);
       overflow: hidden;
       min-width: 0;
       display: flex;
@@ -468,7 +483,7 @@
     }
     .dexp-card__media {
       overflow: hidden;
-      background: #f0f0f0;
+      background: var(--card-bg-media);
     }
     .dexp-card__media img {
       width: 100%;
@@ -482,7 +497,7 @@
     }
     .dexp-media-tall img {
       object-position: center center;
-      border-radius: 4px;
+      border-radius: var(--radius-md);
       -webkit-mask-image: radial-gradient(ellipse 70% 65% at center center, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 100%);
       mask-image: radial-gradient(ellipse 70% 65% at center center, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 100%);
     }
@@ -500,13 +515,13 @@
     }
     .dexp-media-wide img {
       object-position: center top;
-      border-radius: 4px;
+      border-radius: var(--radius-md);
     }
     .dexp-card__media {
       flex-shrink: 0;
     }
     .dexp-card__content {
-      padding: 22px 28px 28px;
+      padding: var(--card-pad);
       min-height: 130px;
       display: flex;
       flex-direction: column;
@@ -556,7 +571,7 @@
 
     /* ===================== SUCCESS STORIES ===================== */
     #success {
-      background: #dfdfe2;
+      background: var(--section-bg-alt);
       position: relative;
       overflow: hidden;
     }
@@ -574,8 +589,8 @@
     #success .container { position: relative; z-index: 1; }
     #success .section-header-row { margin-bottom: 26px; }
     #success .section-title {
-      font-size: clamp(40px, 5vw, 58px);
-      letter-spacing: -0.7px;
+      font-size: clamp(28px, 4vw, 50px);
+      letter-spacing: -0.5px;
     }
     #success .section-subtitle {
       margin-top: 16px;
@@ -723,7 +738,7 @@
     #awards {
       background: var(--blue-600);   /* #1C1932 deep navy */
       color: #fff;
-      padding: 100px 0 80px;
+      padding: var(--section-py) 0;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -752,7 +767,7 @@
       flex-wrap: wrap;
     }
     .aw-header h2 {
-      font-size: clamp(28px, 4.5vw, 56px);
+      font-size: clamp(28px, 4vw, 50px);
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: -0.5px;
@@ -922,8 +937,8 @@
 
     /* ===================== PARTNERSHIPS ===================== */
     #partnerships {
-      background: #dfdfe2;
-      padding: 100px 0 84px;
+      background: var(--section-bg-alt);
+      padding: var(--section-py) 0;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -943,7 +958,7 @@
       object-fit: contain;
     }
     .tp-title-wrap h2 {
-      font-size: clamp(40px, 5vw, 64px);
+      font-size: clamp(28px, 4vw, 50px);
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: -0.7px;
@@ -968,7 +983,7 @@
     }
     .tp-circle {
       border: none;
-      background: #f2f2f3;
+      background: var(--card-bg);
       min-height: 164px;
       padding: 16px;
       display: flex;
@@ -1076,8 +1091,8 @@
 
     .tp-card {
       position: relative;
-      background: #f3f3f4;
-      border-radius: 180px 6px 6px 180px;
+      background: var(--card-bg);
+      border-radius: 180px 4px 4px 180px;
       min-height: 430px;
       overflow: hidden;
       display: grid;
@@ -1182,7 +1197,7 @@
     @media (max-width: 1024px) {
       .tp-body { grid-template-columns: 1fr; }
       .tp-circles { max-width: 520px; margin: 0 auto; }
-      .tp-card { border-radius: 24px; grid-template-columns: 1fr; }
+      .tp-card { border-radius: var(--radius-md); grid-template-columns: 1fr; }
       .tp-card-logo-stage { padding-bottom: 0; }
       .tp-card-text { padding: 36px 28px 30px; }
       .tp-card-text h3 { font-size: 28px; }
@@ -1280,7 +1295,7 @@
     .research-img {
       position: relative;
       overflow: hidden;
-      border-radius: 8px;
+      border-radius: var(--radius-md);
     }
     .research-img img {
       width: 100%;
@@ -1294,13 +1309,13 @@
     }
     /* Capsule / teardrop radius variants */
     .research-img.shape-br {
-      border-radius: 8px 8px 250px 8px;
+      border-radius: 4px 4px 250px 4px;
     }
     .research-img.shape-tl-bl {
-      border-radius: 200px 8px 8px 200px;
+      border-radius: 200px 4px 4px 200px;
     }
     .research-img.shape-tl {
-      border-radius: 200px 8px 8px 8px;
+      border-radius: 200px 4px 4px 4px;
     }
 
     /* Gradient overlay on image for text legibility */
@@ -1444,7 +1459,7 @@
     .meet-team-section {
       position: relative;
       overflow: visible;
-      padding: 96px 28px 60px;
+      padding: var(--section-py) 28px;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -1540,8 +1555,8 @@
     }
     .git-card-inner {
       position: relative;
-      background: #85040D;
-      border-radius: 4px;
+      background: var(--primary-600);
+      border-radius: var(--radius-md);
       overflow: hidden;
       display: flex;
       flex-direction: row;
@@ -1694,7 +1709,7 @@
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 8px;
+      border-radius: var(--radius-md);
       padding: 36px 32px;
     }
     .invite-form {
@@ -1959,7 +1974,7 @@
       .tp-circle.arch-left { min-height: 100px; }
       .tp-logo .brand { font-size: 32px; }
       .tp-logo .sub { font-size: 9px; }
-      .tp-card { border-radius: 16px; }
+      .tp-card { border-radius: var(--radius-md); }
       .tp-card-text { padding: 24px 20px; }
       .tp-card-text h3 { font-size: 20px; }
       .tp-card-text p { font-size: 13px; }
