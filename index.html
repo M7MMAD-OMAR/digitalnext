@@ -230,25 +230,26 @@
       position: absolute;
       top: 0;
       right: 0;
-      bottom: 0;
-      width: clamp(170px, 18.2vw, 255px);
-      min-height: 0;
+      width: clamp(200px, 20vw, 300px);
+      height: 100vh;
       background: transparent;
       display: flex;
-      align-items: stretch;
+      align-items: center;
       justify-content: center;
       overflow: hidden;
       z-index: 3;
       pointer-events: none;
     }
     .hero-shape-rail svg {
-      width: 100%;
+      width: auto;
       height: 100%;
       display: block;
     }
     .hero-bg {
       position: absolute;
       inset: 0;
+      -webkit-mask-image: linear-gradient(to right, black 60%, transparent 100%);
+      mask-image: linear-gradient(to right, black 60%, transparent 100%);
     }
     .hero-bg::after {
       content: '';
@@ -266,8 +267,10 @@
       position: relative;
       z-index: 2;
       width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
       min-height: 100vh;
-      padding: clamp(108px, 17vh, 150px) var(--header-side-pad) clamp(24px, 5vh, 42px);
+      padding: clamp(108px, 17vh, 150px) 52px clamp(24px, 5vh, 42px);
       display: flex;
       align-items: flex-end;
     }
@@ -354,6 +357,7 @@
     .hero-circle-btn:hover .hero-circle-inner svg { transform: translate(3px, -3px); }
 
     @media (max-width: 1024px) {
+      .hero-content { padding-left: 32px; padding-right: 32px; }
       .hero-title { font-size: clamp(42px, 5vw, 56px); }
       .hero-sub { font-size: clamp(18px, 2.3vw, 30px); }
     }
@@ -1480,9 +1484,9 @@
     .meet-team-section .team-image {
       display: block;
       width: 100%;
-      aspect-ratio: 1 / 1;
+      aspect-ratio: 3 / 4;
       object-fit: cover;
-      object-position: center top;
+      object-position: center 20%;
     }
     .meet-team-section .team-info {
       position: absolute;
@@ -2009,7 +2013,7 @@
 <section id="hero">
   <div class="hero-main">
     <div class="hero-bg">
-      <img src="https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?w=1920&q=80" alt="Hero background" />
+      <img src="images/hero bg.png" alt="Hero background" />
     </div>
     <div class="hero-content">
       <div class="hero-title-block">
@@ -2038,7 +2042,7 @@
     </div>
   </div>
   <aside class="hero-shape-rail" aria-hidden="true">
-<svg width="255" height="879" viewBox="0 0 255 879" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="255" height="879" viewBox="0 0 255 879" preserveAspectRatio="xMidYMid meet" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <path d="M153.141 -2.75534C147.61 -3.30582 143.062 1.23272 143.062 6.79131L143.062 196.634C143.062 202.193 147.61 206.731 153.141 206.181C207.53 200.768 249.963 156.062 249.963 101.713C249.963 47.3632 207.53 2.65756 153.141 -2.75534Z" fill="#1C1932"/>
 <path d="M98.5485 58.4033C73.9661 58.4033 54.0361 77.7929 54.0361 101.713C54.0361 125.633 73.9661 145.022 98.5485 145.022C123.131 145.022 143.063 125.631 143.063 101.713C143.063 77.7946 123.133 58.4033 98.5485 58.4033Z" fill="#1C1932"/>
 <path d="M151.896 233.118C151.896 224.237 141.182 219.762 134.866 226.005L52.5504 307.364C50.6498 309.243 49.5801 311.804 49.5801 314.477V387.089C49.5801 395.97 60.2934 400.444 66.6097 394.201L148.925 312.842C150.826 310.964 151.896 308.402 151.896 305.73V233.118Z" fill="#1C1932"/>
