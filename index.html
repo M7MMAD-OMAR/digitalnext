@@ -1530,14 +1530,11 @@
     }
 
     /* ===================== GET IN TOUCH CARD ===================== */
-    .git-section {
-      padding: 80px 0;
-      background: var(--bg-subtle);
-    }
     .git-card {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 52px;
+      position: relative;
+      z-index: 10;
+      margin-top: 60px;
+      margin-bottom: -140px;
     }
     .git-card-inner {
       position: relative;
@@ -1596,10 +1593,8 @@
     @media (max-width: 900px) {
       .git-card-inner { grid-template-columns: 1fr; }
       .git-card-img { min-height: 200px; }
-      .git-card { padding: 0 32px; }
     }
     @media (max-width: 768px) {
-      .git-card { padding: 0 20px; }
       .git-card-text { padding: 40px 32px; }
     }
 
@@ -1607,7 +1602,8 @@
     .invite-section {
       position: relative;
       width: 100%;
-      min-height: 560px;
+      min-height: 100vh;
+      padding-top: 140px;
       overflow: hidden;
       display: flex;
       align-items: center;
@@ -1805,7 +1801,7 @@
 
     /* ---- Footer body ---- */
     .footer-body {
-      padding: 80px 52px 0;
+      padding: 80px 52px 48px;
       display: grid;
       grid-template-columns: 2fr 1fr 1fr 1fr;
       gap: 40px;
@@ -1840,11 +1836,22 @@
     .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
     .footer-col ul li a { font-size: 14px; color: var(--blue-50); transition: color 0.2s; }
     .footer-col ul li a:hover { color: #fff; }
+    .footer-icon {
+      width: 16px;
+      height: 16px;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 8px;
+      filter: brightness(0) invert(0.75);
+      transition: filter 0.2s;
+      flex-shrink: 0;
+    }
+    .footer-col ul li a:hover .footer-icon { filter: brightness(0) invert(1); }
 
     /* ---- Footer bottom ---- */
     .footer-bottom {
       margin: 48px auto 0;
-      padding: 24px 52px 32px;
+      padding: 24px 52px 48px;
       border-top: 1px solid rgba(255,255,255,0.08);
       display: flex; align-items: center; justify-content: space-between;
       font-size: 13px; color: var(--blue-50);
@@ -2720,6 +2727,23 @@
         </div>
       </article>
     </div>
+
+    <!-- GET IN TOUCH CARD -->
+    <div class="git-card">
+      <div class="git-card-inner fade-up">
+        <div class="git-card-text">
+          <h2>Get in Touch</h2>
+          <p>Drop your email, and you'll be contacted by one of our support team.</p>
+          <a href="#contact" class="git-card-btn">
+            Contact US
+            <img src="images/icon custom btn.svg" alt="" />
+          </a>
+        </div>
+        <div class="git-card-img">
+          <img src="images/Get in Touch bg image.png" alt="" />
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -2812,10 +2836,10 @@
     <div class="footer-col">
       <h4>Connect</h4>
       <ul>
-        <li><a href="/cdn-cgi/l/email-protection#432b262f2f2c03272a242a37222f2d263b376d202c2e"><span class="__cf_email__" data-cfemail="a6cec3cacac9e6c2cfc1cfd2c7cac8c3ded288c5c9cb">[email&#160;protected]</span></a></li>
-        <li><a href="#">Dubai, UAE</a></li>
-        <li><a href="#">LinkedIn ↗</a></li>
-        <li><a href="#">Twitter / X ↗</a></li>
+        <li><a href="/cdn-cgi/l/email-protection#432b262f2f2c03272a242a37222f2d263b376d202c2e"><img src="images/icon/envelope.svg" alt="" class="footer-icon" /><span class="__cf_email__" data-cfemail="a6cec3cacac9e6c2cfc1cfd2c7cac8c3ded288c5c9cb">[email&#160;protected]</span></a></li>
+        <li><a href="#"><img src="images/icon/map-pin.svg" alt="" class="footer-icon" />Dubai, UAE</a></li>
+        <li><a href="#"><img src="images/icon/linkedin.svg" alt="" class="footer-icon" />LinkedIn ↗</a></li>
+        <li><a href="#"><img src="images/icon/x-logo.svg" alt="" class="footer-icon" />Twitter / X ↗</a></li>
       </ul>
     </div>
   </div>
