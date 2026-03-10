@@ -53,7 +53,7 @@
     button { font-family: var(--font); cursor: pointer; border: none; background: none; }
 
     /* ===== UTILITY ===== */
-    .container { max-width: 1280px; margin: 0 auto; padding: 0 52px; }
+    .container { max-width: 1400px; margin: 0 auto; padding: 0 52px; }
     .section-pad { padding: 100px 0; }
     @media (max-width: 1024px) { .container { padding: 0 32px; } .section-pad { padding: 72px 0; } }
     @media (max-width: 768px)  { .container { padding: 0 20px; } .section-pad { padding: 56px 0; } }
@@ -98,7 +98,10 @@
       transition: background 0.2s;
     }
     .btn-outline:hover { background: rgba(133,4,13,0.06); }
-    .btn-arrow { width: 20px; height: 20px; display: inline-flex; align-items: center; justify-content: center; transform: rotate(-30deg); font-size: 14px; }
+    .btn-arrow { width: 20px; height: 20px; display: inline-flex; align-items: center; justify-content: center; font-size: 14px; }
+    .btn-outline img[src*="icon custom btn"], .stories-btn img[src*="icon custom btn"] {
+      filter: brightness(0);
+    }
 
     /* ===================== NAVBAR ===================== */
     .navbar {
@@ -199,7 +202,6 @@
         left: 0;
         right: 0;
         background: rgba(255,255,255,0.95);
-        backdrop-filter: blur(10px);
         padding: 16px;
         border-radius: 8px;
         box-shadow: 0 8px 24px rgba(0,0,0,0.12);
@@ -390,6 +392,9 @@
       overflow: hidden; min-height: 325px;
       display: flex; flex-direction: column; justify-content: flex-end;
     }
+    .cards-row-2 .ai-card {
+      justify-content: flex-start;
+    }
     .ai-card::after {
       content: '';
       position: absolute;
@@ -398,8 +403,11 @@
       pointer-events: none;
       background: linear-gradient(180deg, rgba(0,0,0,0.02) 38%, rgba(0,0,0,0.34) 100%);
     }
+    .cards-row-2 .ai-card::after {
+      background: linear-gradient(0deg, rgba(0,0,0,0.02) 38%, rgba(0,0,0,0.34) 100%);
+    }
     .ai-card-bg { position: absolute; inset: 0; }
-    .ai-card-bg img { display: none; }
+    .ai-card-bg img { width: 100%; height: 100%; object-fit: cover; }
     .ai-card-bg::before,
     .ai-card-bg::after {
       content: '';
@@ -411,69 +419,9 @@
     .ai-card-text p  { font-size: 16px; font-weight: 400; line-height: 1.5; }
 
     .ai-card.red-deep { background: #a4030f; }
-    .ai-card.red-deep .ai-card-bg {
-      background: linear-gradient(90deg, #a4030f 0 49.8%, #8d020b 49.8% 100%);
-    }
-    .ai-card.red-deep .ai-card-bg::before {
-      background:
-        radial-gradient(circle at -6% 0%, rgba(224,164,169,0.92) 0 34%, transparent 34.5%),
-        radial-gradient(circle at 49% -8%, rgba(223,160,166,0.88) 0 13%, transparent 13.5%),
-        radial-gradient(circle at 85% -2%, rgba(221,164,169,0.9) 0 22%, transparent 22.5%),
-        repeating-radial-gradient(circle at 100% 22%, rgba(36,0,8,0.5) 0 2px, transparent 2px 18px);
-      opacity: 0.95;
-    }
-    .ai-card.red-deep .ai-card-bg::after {
-      background:
-        radial-gradient(circle at 50% 100%, rgba(108,0,8,0.7) 0 42%, transparent 42.5%),
-        linear-gradient(to bottom, rgba(0,0,0,0.04), rgba(0,0,0,0.18));
-    }
-
     .ai-card.navy { background: #171833; }
-    .ai-card.navy .ai-card-bg {
-      background: linear-gradient(180deg, #232445 0%, #151634 100%);
-    }
-    .ai-card.navy .ai-card-bg::before {
-      background:
-        linear-gradient(116deg, transparent 0 68%, rgba(7,7,26,0.95) 68% 85%, transparent 85%),
-        repeating-linear-gradient(165deg, rgba(107,108,146,0.55) 0 12px, transparent 12px 26px),
-        repeating-linear-gradient(180deg, rgba(58,60,92,0.55) 0 2px, transparent 2px 8px),
-        linear-gradient(180deg, rgba(12,12,34,0.15), rgba(8,8,27,0.45));
-      background-size: 100% 100%, 48% 46%, 34% 28%, 100% 100%;
-      background-position: right top, left top, right top, center;
-      background-repeat: no-repeat;
-      opacity: 0.95;
-    }
-    .ai-card.navy .ai-card-bg::after {
-      background:
-        radial-gradient(circle at 58% 20%, rgba(126,128,158,0.68) 0 16%, transparent 16.4%),
-        radial-gradient(circle at 66% 19%, rgba(84,86,118,0.9) 0 31%, transparent 31.5%),
-        linear-gradient(90deg, transparent 53%, #0a0a23 53% 73%, transparent 73%),
-        linear-gradient(180deg, transparent 0 46%, rgba(8,8,26,0.18) 46% 100%);
-    }
-
     .ai-card.blue-mid { background: #211e3b; }
-    .ai-card.blue-mid .ai-card-bg {
-      background:
-        radial-gradient(circle at 14% 18%, rgba(193,192,200,0.2) 0 16%, transparent 16.5%),
-        linear-gradient(135deg, #252246 0%, #1c1934 100%);
-    }
-    .ai-card.blue-mid .ai-card-bg::before {
-      background:
-        repeating-linear-gradient(135deg, rgba(104,102,122,0.2) 0 8px, transparent 8px 20px);
-    }
-    .ai-card.blue-mid .ai-card-bg::after { display: none; }
-
     .ai-card.red-dark { background: #6b030b; }
-    .ai-card.red-dark .ai-card-bg {
-      background:
-        radial-gradient(circle at 78% 22%, rgba(220,165,169,0.22) 0 20%, transparent 20.5%),
-        linear-gradient(135deg, #7a030c 0%, #520308 100%);
-    }
-    .ai-card.red-dark .ai-card-bg::before {
-      background:
-        repeating-radial-gradient(circle at 100% 0%, rgba(230,185,188,0.12) 0 1px, transparent 1px 10px);
-    }
-    .ai-card.red-dark .ai-card-bg::after { display: none; }
     @media (max-width: 900px) {
       .cards-row, .cards-row-2 { grid-template-columns: 1fr; }
     }
@@ -968,11 +916,9 @@
     }
     .tp-quote {
       width: 36px; height: 36px;
-      border-radius: 6px 6px 6px 0;
-      background: #520308;
       flex-shrink: 0;
+      object-fit: contain;
     }
-    .tp-quote.right { border-radius: 6px 6px 0 6px; }
     .tp-title-wrap h2 {
       font-size: clamp(40px, 5vw, 64px);
       font-weight: 700;
@@ -1232,7 +1178,7 @@
 
     /* ===================== RESEARCH ===================== */
     #research {
-      background: #FAFAFA;
+      background: #FAFAFA url('images/bg Research & Case Studies.png') center/cover no-repeat;
       color: var(--text-fg);
       position: relative;
       overflow: hidden;
@@ -1494,8 +1440,9 @@
         linear-gradient(180deg, #05051b 0%, #06061d 45%, #200818 100%);
     }
     .meet-team-section .team-container {
-      max-width: 1240px;
+      max-width: 1400px;
       margin: 0 auto;
+      padding: 0 52px;
     }
     .meet-team-section .team-heading-wrap {
       display: flex;
@@ -1517,11 +1464,9 @@
     .meet-team-section .team-heading-accent {
       width: 36px;
       height: 36px;
-      background: #520308;
       display: inline-block;
+      object-fit: contain;
     }
-    .meet-team-section .team-heading-accent.left { border-radius: 6px 6px 6px 0; }
-    .meet-team-section .team-heading-accent.right { border-radius: 6px 6px 0 6px; }
     .meet-team-section .team-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -1535,8 +1480,9 @@
     .meet-team-section .team-image {
       display: block;
       width: 100%;
-      aspect-ratio: 1.12 / 1;
+      aspect-ratio: 1 / 1;
       object-fit: cover;
+      object-position: center top;
     }
     .meet-team-section .team-info {
       position: absolute;
@@ -1580,6 +1526,8 @@
       grid-template-columns: 1fr 1fr;
       min-height: 288px;
       position: relative;
+      max-width: 1400px;
+      margin: 0 auto;
     }
     /* Left: text + form */
     .contact-left {
@@ -1662,6 +1610,8 @@
     .footer-invite-wrap {
       background: var(--blue-800);
       padding: 80px 52px 0;
+      max-width: 1400px;
+      margin: 0 auto;
     }
     .footer-invite {
       background: var(--primary-800);
@@ -1695,6 +1645,8 @@
       display: grid;
       grid-template-columns: 2fr 1fr 1fr 1fr;
       gap: 40px;
+      max-width: 1400px;
+      margin: 0 auto;
     }
     .footer-brand-logo {
       display: flex; align-items: center; gap: 2px;
@@ -1725,12 +1677,13 @@
 
     /* ---- Footer bottom ---- */
     .footer-bottom {
-      margin: 48px 52px 0;
+      margin: 48px auto 0;
+      padding: 24px 52px;
       border-top: 1px solid rgba(255,255,255,0.08);
-      padding: 24px 0;
       display: flex; align-items: center; justify-content: space-between;
       font-size: 13px; color: var(--blue-50);
       gap: 16px; flex-wrap: wrap;
+      max-width: 1400px;
     }
 
     @media (max-width: 1024px) {
@@ -1742,6 +1695,12 @@
       .footer-invite { flex-direction: column; padding: 40px 24px; }
       .footer-invite-wrap, .footer-body { padding-left: 20px; padding-right: 20px; }
       .footer-bottom { margin-left: 20px; margin-right: 20px; }
+    }
+    @media (max-width: 900px) {
+      .footer-invite-wrap .footer-invite[style*="grid-template-columns"] {
+        grid-template-columns: 1fr !important;
+        min-height: auto !important;
+      }
     }
 
     /* ===== SCROLL ANIMATIONS ===== */
@@ -1940,10 +1899,6 @@
                   box-shadow 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
                   backdrop-filter 0.35s ease !important;
     }
-    .navbar.scrolled .navbar-inner {
-      backdrop-filter: blur(14px);
-    }
-
     /* ===== BUTTON HOVER ENHANCEMENTS ===== */
     .btn-primary {
       transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease !important;
@@ -2013,6 +1968,17 @@
       .footer-col ul li a::after {
         transition: none !important;
       }
+    }
+
+    .footer-image-wrap {
+      width: 100%;
+      overflow: hidden;
+    }
+    .footer-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      opacity: 0.6;
     }
   </style>
 </head>
@@ -2106,7 +2072,7 @@
         <!-- Dynamic Personalization -->
         <div class="ai-card red-deep">
           <div class="ai-card-bg">
-            <img src="https://images.unsplash.com/photo-1535378917042-10a22c95931a?w=800&q=80" alt="" />
+            <img src="images/Dynamic Personalization - lt.png" alt="" />
           </div>
           <div class="ai-card-text">
             <h3>Dynamic Personalization</h3>
@@ -2116,7 +2082,7 @@
         <!-- AI-Powered Development -->
         <div class="ai-card navy">
           <div class="ai-card-bg">
-            <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&q=80" alt="" />
+            <img src="images/rt.png" alt="" />
           </div>
           <div class="ai-card-text">
             <h3>AI-Powered Development</h3>
@@ -2128,7 +2094,7 @@
         <!-- Efficient Workflow Automation -->
         <div class="ai-card blue-mid">
           <div class="ai-card-bg">
-            <img src="https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?w=800&q=80" alt="" style="transform:rotate(90deg); object-position: center;" />
+            <img src="images/Efficient Workflow Automation lb.png" alt="" />
           </div>
           <div class="ai-card-text">
             <h3>Efficient Workflow Automation</h3>
@@ -2138,7 +2104,7 @@
         <!-- Proactive Content Optimization -->
         <div class="ai-card red-dark">
           <div class="ai-card-bg">
-            <img src="https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?w=800&q=80" alt="" />
+            <img src="images/rb.png" alt="" />
           </div>
           <div class="ai-card-text">
             <h3>Proactive Content Optimization</h3>
@@ -2161,7 +2127,7 @@
         <div class="about-left fade-up">
           <p>Build your business solution using low code/no code; mobile apps, web apps, automations, workflows, and more.</p>
           <a href="#contact" class="btn-primary">
-            About US <span class="btn-arrow">&rarr;</span>
+            About US <img src="images/icon custom btn.svg" alt="" width="20" height="20" />
           </a>
         </div>
         <div class="about-row about-top-cards fade-up fade-up-delay-1">
@@ -2221,9 +2187,7 @@
       </div>
       <a href="#" class="stories-btn">
         View All Stories
-        <svg viewBox="0 0 16 16" aria-hidden="true">
-          <path d="M3 13L13 3M13 3H7M13 3V9"/>
-        </svg>
+        <img src="images/icon custom btn.svg" alt="" width="20" height="20" />
       </a>
     </div>
     <div class="stories-layout fade-up">
@@ -2275,9 +2239,7 @@
       <h2>Awards &amp; Recognition</h2>
       <a href="#" class="aw-btn-view">
         View All Awards
-        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
-          <path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+        <img src="images/icon custom btn.svg" alt="" width="20" height="20" />
       </a>
     </div>
 
@@ -2402,9 +2364,9 @@
   <div class="container">
 
     <div class="tp-title-wrap fade-up">
-      <div class="tp-quote left" aria-hidden="true"></div>
+      <img src="images/left icon.png" alt="" class="tp-quote left" aria-hidden="true" />
       <h2>Trusted Partnerships</h2>
-      <div class="tp-quote right" aria-hidden="true"></div>
+      <img src="images/right icon.png" alt="" class="tp-quote right" aria-hidden="true" />
     </div>
 
     <div class="tp-body">
@@ -2529,7 +2491,7 @@
     </div>
 
     <div class="research-more fade-up">
-      <a href="#" class="btn-outline">View All Studies <span class="btn-arrow">→</span></a>
+      <a href="#" class="btn-outline">View All Studies <img src="images/icon custom btn.svg" alt="" width="20" height="20" /></a>
     </div>
   </div>
 </section>
@@ -2538,14 +2500,14 @@
 <section id="team" class="meet-team-section">
   <div class="team-container">
     <div class="team-heading-wrap fade-up">
-      <span class="team-heading-accent left" aria-hidden="true"></span>
+      <img src="images/left icon.png" alt="" class="team-heading-accent left" aria-hidden="true" />
       <h2 class="team-heading">MEET OUR TEAM</h2>
-      <span class="team-heading-accent right" aria-hidden="true"></span>
+      <img src="images/right icon.png" alt="" class="team-heading-accent right" aria-hidden="true" />
     </div>
 
     <div class="team-grid">
       <article class="team-card fade-up">
-        <img src="images/team-1.png" alt="Karim Al-Samir" class="team-image">
+        <img src="images/Karim Al-Samir.png" alt="Karim Al-Samir" class="team-image">
         <div class="team-info">
           <h3 class="team-name">Karim Al-Samir</h3>
           <p class="team-role">LCNC Developer</p>
@@ -2553,7 +2515,7 @@
       </article>
 
       <article class="team-card fade-up fade-up-delay-1">
-        <img src="images/team-2.png" alt="Rami Daoud" class="team-image">
+        <img src="images/Rami Daoud.png" alt="Rami Daoud" class="team-image">
         <div class="team-info">
           <h3 class="team-name">Rami Daoud</h3>
           <p class="team-role">Project Manager</p>
@@ -2561,7 +2523,7 @@
       </article>
 
       <article class="team-card fade-up fade-up-delay-2">
-        <img src="images/team-3.png" alt="Omar Yassin" class="team-image">
+        <img src="images/Omar Yassin.png" alt="Omar Yassin" class="team-image">
         <div class="team-info">
           <h3 class="team-name">Omar Yassin</h3>
           <p class="team-role">Senior Software Engineer</p>
@@ -2569,7 +2531,7 @@
       </article>
 
       <article class="team-card fade-up">
-        <img src="images/team-4.png" alt="Ahmad Salem" class="team-image">
+        <img src="images/Ahmad Salem.png" alt="Ahmad Salem" class="team-image">
         <div class="team-info">
           <h3 class="team-name">Ahmad Salem</h3>
           <p class="team-role">Chief Executive Officer (CEO)</p>
@@ -2577,7 +2539,7 @@
       </article>
 
       <article class="team-card fade-up fade-up-delay-1">
-        <img src="images/team-5.png" alt="TRON" class="team-image">
+        <img src="images/TRON.png" alt="TRON" class="team-image">
         <div class="team-info">
           <h3 class="team-name">TRON</h3>
           <p class="team-role">Data Architecture &amp; Systems</p>
@@ -2585,7 +2547,7 @@
       </article>
 
       <article class="team-card fade-up fade-up-delay-2">
-        <img src="images/team-6.png" alt="Rami Daoud" class="team-image">
+        <img src="images/Rami Daoud (2).png" alt="Rami Daoud" class="team-image">
         <div class="team-info">
           <h3 class="team-name">Rami Daoud</h3>
           <p class="team-role">Senior Software Engineer</p>
@@ -2593,7 +2555,7 @@
       </article>
 
       <article class="team-card fade-up">
-        <img src="images/team-7.png" alt="NEXUS" class="team-image">
+        <img src="images/NEXUS.png" alt="NEXUS" class="team-image">
         <div class="team-info">
           <h3 class="team-name">NEXUS</h3>
           <p class="team-role">Risk &amp; Cybersecurity</p>
@@ -2601,7 +2563,7 @@
       </article>
 
       <article class="team-card fade-up fade-up-delay-1">
-        <img src="images/team-8.png" alt="Karim Al-Samir" class="team-image">
+        <img src="images/Karim Al-Samir (2).png" alt="Karim Al-Samir" class="team-image">
         <div class="team-info">
           <h3 class="team-name">Karim Al-Samir</h3>
           <p class="team-role">Senior Software Engineer</p>
@@ -2637,11 +2599,7 @@
         />
         <button type="button" onclick="handleContactSubmit()" aria-label="Submit email">
           Get Started
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <path d="M3 8H13M13 8L8.5 3.5M13 8L8.5 12.5"
-              stroke="currentColor" stroke-width="1.5"
-              stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+          <img src="images/icon custom btn.svg" alt="" width="20" height="20" />
         </button>
       </div>
       <p class="contact-success" id="contactSuccess" style="display:none; color:var(--primary-600); font-size:14px; font-weight:500;">
@@ -2649,18 +2607,9 @@
       </p>
     </div>
 
-    <!-- RIGHT: decorative mosaic grid (Figma: 4 col × 2 row rectangles) -->
+    <!-- RIGHT: decorative background image -->
     <div class="contact-mosaic fade-up fade-up-delay-1" aria-hidden="true">
-      <!-- Row 1 -->
-      <div class="cm" style="background:var(--primary-600);"></div>
-      <div class="cm" style="background:var(--blue-500);"></div>
-      <div class="cm" style="background:var(--primary-800);"></div>
-      <div class="cm" style="background:var(--blue-600);"></div>
-      <!-- Row 2 -->
-      <div class="cm" style="background:var(--blue-600);"></div>
-      <div class="cm" style="background:var(--primary-400);"></div>
-      <div class="cm" style="background:var(--blue-500);"></div>
-      <div class="cm" style="background:var(--primary-800);"></div>
+      <img src="images/Get in Touch bg image.png" alt="" style="width:100%; height:100%; object-fit:cover; display:block;" />
     </div>
 
   </div>
@@ -2671,16 +2620,44 @@
 
   <!-- Invite to event banner -->
   <div class="footer-invite-wrap">
-    <div class="footer-invite">
-      <h2>Invite Digital Next<br>to Your Event</h2>
-      <a href="#contact" class="btn-outline" style="border-color:rgba(255,255,255,0.4); color:#fff; white-space:nowrap; flex-shrink:0;">
-        Reach Out
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="transform:rotate(-30deg)" aria-hidden="true">
-          <path d="M3 8H13M13 8L8.5 3.5M13 8L8.5 12.5"
-            stroke="currentColor" stroke-width="1.5"
-            stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </a>
+    <div class="footer-invite" style="background: url('images/contact section bg.png') center/cover no-repeat; padding: 0; display: grid; grid-template-columns: 1fr 1fr; min-height: 500px; border-radius: 2px; position: relative; overflow: hidden;">
+      <div class="footer-invite" style="background: transparent; padding: 64px 52px; display: flex; flex-direction: column; justify-content: center; gap: 16px; position: relative; z-index: 1;">
+        <span style="display: inline-block; background: var(--primary-600); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 6px 14px; border-radius: 2px; width: fit-content;">Invite Our Events</span>
+        <h2 style="font-size: clamp(22px, 2.5vw, 36px); font-weight: 700; max-width: 380px; color: #fff; line-height: 1.2;">Invite Digital Next<br>to Your Event</h2>
+        <p style="font-size: 15px; color: rgba(255,255,255,0.75); max-width: 380px; line-height: 1.6;">Expert Speakers in Digital Transformation, LCNC, and AI ready to inspire your audience.</p>
+      </div>
+      <div style="padding: 48px 52px; display: flex; align-items: center; justify-content: center; position: relative; z-index: 1;">
+        <form class="invite-form" style="width: 100%; max-width: 440px; display: flex; flex-direction: column; gap: 16px;" onsubmit="event.preventDefault();">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div>
+              <label style="display: block; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.7); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;">Full Name</label>
+              <input type="text" placeholder="Full Name" style="width: 100%; padding: 12px 14px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 2px; color: #fff; font-family: var(--font); font-size: 14px; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--primary-400)'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'" />
+            </div>
+            <div>
+              <label style="display: block; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.7); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;">Event Name</label>
+              <input type="text" placeholder="Event Name" style="width: 100%; padding: 12px 14px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 2px; color: #fff; font-family: var(--font); font-size: 14px; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--primary-400)'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'" />
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div>
+              <label style="display: block; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.7); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;">Email Address</label>
+              <input type="email" placeholder="Email Address" style="width: 100%; padding: 12px 14px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 2px; color: #fff; font-family: var(--font); font-size: 14px; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--primary-400)'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'" />
+            </div>
+            <div>
+              <label style="display: block; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.7); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;">Phone Number</label>
+              <input type="tel" placeholder="Phone Number" style="width: 100%; padding: 12px 14px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 2px; color: #fff; font-family: var(--font); font-size: 14px; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--primary-400)'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'" />
+            </div>
+          </div>
+          <div>
+            <label style="display: block; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.7); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;">Message</label>
+            <textarea placeholder="Your message..." rows="4" style="width: 100%; padding: 12px 14px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 2px; color: #fff; font-family: var(--font); font-size: 14px; outline: none; resize: vertical; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--primary-400)'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'"></textarea>
+          </div>
+          <button type="submit" style="display: inline-flex; align-items: center; gap: 8px; background: var(--primary-600); color: #fff; border: none; padding: 14px 28px; border-radius: 2px; font-family: var(--font); font-size: 14px; font-weight: 600; cursor: pointer; transition: background 0.2s; width: fit-content; align-self: flex-end;" onmouseover="this.style.background='var(--primary-700)'" onmouseout="this.style.background='var(--primary-600)'">
+            Submit Request
+            <img src="images/icon custom btn.svg" alt="" width="18" height="18" />
+          </button>
+        </form>
+      </div>
     </div>
   </div>
 
@@ -2727,6 +2704,10 @@
   <div class="footer-bottom">
     <span>© 2025 Digital Next. All rights reserved.</span>
     <span>Privacy Policy · Terms of Service</span>
+  </div>
+
+  <div class="footer-image-wrap">
+    <img src="images/Footer image.png" alt="" class="footer-image" loading="lazy" decoding="async" />
   </div>
 
 </footer>
