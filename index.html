@@ -1519,89 +1519,179 @@
       .meet-team-section .team-heading-accent { width: 28px; height: 28px; }
     }
 
-    /* ===================== GET IN TOUCH ===================== */
-    #contact {
-      background: var(--bg-default);
+    /* ===================== INVITE / CONTACT SECTION ===================== */
+    .invite-section {
       position: relative;
+      width: 100%;
+      min-height: 560px;
       overflow: hidden;
+      display: flex;
+      align-items: center;
     }
-    .contact-wrap {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      min-height: 288px;
+    .invite-bg-img {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .invite-bg-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .invite-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(12,11,21,0.88) 0%, rgba(12,11,21,0.72) 50%, rgba(12,11,21,0.55) 100%);
+      z-index: 1;
+    }
+    .invite-inner {
       position: relative;
+      z-index: 2;
+      width: 100%;
       max-width: 1400px;
       margin: 0 auto;
-    }
-    /* Left: text + form */
-    .contact-left {
-      padding: 56px 56px 56px 52px;
-      display: flex; flex-direction: column; justify-content: center; gap: 24px;
-      position: relative; z-index: 1;
-    }
-    .contact-left h2 {
-      font-size: clamp(28px, 3vw, 44px);
-      font-weight: 700; line-height: 1.1;
-    }
-    .contact-left p {
-      font-size: 16px; line-height: 1.6;
-      color: var(--text-muted); max-width: 518px;
-    }
-    /* Email form row */
-    .contact-form {
-      display: flex; gap: 0;
-      max-width: 480px;
-      border: 2px solid #e4e4e7;
-      border-radius: 2px; overflow: hidden;
-      background: #fff;
-    }
-    .contact-form input[type="email"] {
-      flex: 1; padding: 12px 16px;
-      font-family: var(--font); font-size: 14px;
-      border: none; outline: none;
-      background: transparent; color: var(--text-fg);
-    }
-    .contact-form input[type="email"]::placeholder { color: var(--text-muted); }
-    .contact-form button {
-      background: var(--primary-600); color: #fff;
-      border: none; padding: 12px 20px;
-      font-family: var(--font); font-size: 14px; font-weight: 500;
-      cursor: pointer; white-space: nowrap;
-      display: flex; align-items: center; gap: 8px;
-      transition: background 0.2s;
-      position: relative;
-    }
-    .contact-form button::before {
-      content: '';
-      position: absolute; bottom: -2px; left: 0; right: 0;
-      height: 2px; background: var(--primary-800);
-    }
-    .contact-form button:hover { background: var(--primary-700); }
-
-    /* Right: decorative mosaic grid — exact Figma layout */
-    .contact-mosaic {
-      position: relative;
+      padding: 80px 52px;
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: repeat(2, 1fr);
+      grid-template-columns: 1fr 1.1fr;
+      gap: 60px;
+      align-items: center;
     }
-    .cm { position: relative; }
-    /* top-left quadrant */
-    .cm-1  { background: var(--primary-600);   opacity: 0.22; }
-    .cm-2  { background: var(--blue-600);       opacity: 0.14; }
-    .cm-3  { background: var(--primary-800);    opacity: 0.18; }
-    .cm-4  { background: var(--blue-500);       opacity: 0.10; }
-    /* bottom row */
-    .cm-5  { background: var(--blue-500);       opacity: 0.10; }
-    .cm-6  { background: var(--primary-600);    opacity: 0.20; }
-    .cm-7  { background: var(--blue-600);       opacity: 0.12; }
-    .cm-8  { background: var(--primary-400);    opacity: 0.16; }
+    .invite-text {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .invite-badge {
+      display: inline-block;
+      background: var(--primary-600);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 2px;
+      width: fit-content;
+    }
+    .invite-text h2 {
+      font-size: clamp(24px, 2.8vw, 40px);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.2;
+      max-width: 420px;
+    }
+    .invite-text p {
+      font-size: 15px;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.7;
+      max-width: 400px;
+    }
 
-    @media (max-width: 768px) {
-      .contact-wrap { grid-template-columns: 1fr; }
-      .contact-mosaic { display: none; }
-      .contact-left { padding: 48px 20px; }
-      .contact-form { max-width: 100%; }
+    /* ---- Invite form ---- */
+    .invite-form-wrap {
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 36px 32px;
+    }
+    .invite-form {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .invite-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .invite-field label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 7px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .field-opt {
+      font-weight: 400;
+      text-transform: none;
+      letter-spacing: 0;
+      color: rgba(255,255,255,0.35);
+      font-size: 11px;
+    }
+    .invite-field input,
+    .invite-field textarea {
+      width: 100%;
+      padding: 12px 14px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 4px;
+      color: #fff;
+      font-family: var(--font);
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.25s, background 0.25s;
+      box-sizing: border-box;
+    }
+    .invite-field input::placeholder,
+    .invite-field textarea::placeholder {
+      color: rgba(255,255,255,0.3);
+    }
+    .invite-field input:focus,
+    .invite-field textarea:focus {
+      border-color: var(--primary-400);
+      background: rgba(255,255,255,0.1);
+    }
+    .invite-field textarea {
+      resize: vertical;
+      min-height: 72px;
+    }
+    .invite-submit {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--primary-600);
+      color: #fff;
+      border: none;
+      padding: 14px 32px;
+      border-radius: 4px;
+      font-family: var(--font);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      width: fit-content;
+      align-self: flex-end;
+    }
+    .invite-submit:hover {
+      background: var(--primary-700);
+      transform: translateY(-1px);
+    }
+    .invite-submit svg {
+      transition: transform 0.2s;
+    }
+    .invite-submit:hover svg {
+      transform: translate(2px, -2px);
+    }
+
+    @media (max-width: 900px) {
+      .invite-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 60px 32px;
+      }
+      .invite-text { align-items: center; text-align: center; }
+      .invite-text h2 { max-width: none; }
+      .invite-text p { max-width: none; }
+    }
+    @media (max-width: 600px) {
+      .invite-inner { padding: 48px 20px; }
+      .invite-row { grid-template-columns: 1fr; }
+      .invite-form-wrap { padding: 28px 20px; }
     }
 
     /* ===================== FOOTER ===================== */
@@ -1609,39 +1699,6 @@
       background: var(--blue-800);
       color: var(--text-inv);
     }
-
-    /* ---- Invite banner ---- */
-    .footer-invite-wrap {
-      background: var(--blue-800);
-      padding: 80px 52px 0;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-    .footer-invite {
-      background: var(--primary-800);
-      border-radius: 2px;
-      padding: 64px 52px;
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 32px; flex-wrap: wrap;
-      position: relative; overflow: hidden;
-    }
-    /* geometric accent squares inside invite */
-    .footer-invite::before {
-      content: '';
-      position: absolute; right: 0; top: 0;
-      width: 40%; height: 100%;
-      background:
-        linear-gradient(135deg, rgba(255,255,255,0.03) 25%, transparent 25%),
-        linear-gradient(225deg, rgba(255,255,255,0.03) 25%, transparent 25%);
-      background-size: 60px 60px;
-      pointer-events: none;
-    }
-    .footer-invite h2 {
-      font-size: clamp(22px, 2.5vw, 36px);
-      font-weight: 700; max-width: 580px; color: #fff;
-      position: relative; z-index: 1;
-    }
-    .footer-invite a { position: relative; z-index: 1; }
 
     /* ---- Footer body ---- */
     .footer-body {
@@ -1692,19 +1749,11 @@
 
     @media (max-width: 1024px) {
       .footer-body { grid-template-columns: 1fr 1fr; }
-      .footer-invite-wrap, .footer-body, .footer-bottom { padding-left: 32px; padding-right: 32px; }
+      .footer-body, .footer-bottom { padding-left: 32px; padding-right: 32px; }
     }
     @media (max-width: 600px) {
-      .footer-body { grid-template-columns: 1fr; }
-      .footer-invite { flex-direction: column; padding: 40px 24px; }
-      .footer-invite-wrap, .footer-body { padding-left: 20px; padding-right: 20px; }
+      .footer-body { grid-template-columns: 1fr; padding-left: 20px; padding-right: 20px; }
       .footer-bottom { margin-left: 20px; margin-right: 20px; }
-    }
-    @media (max-width: 900px) {
-      .footer-invite-wrap .footer-invite[style*="grid-template-columns"] {
-        grid-template-columns: 1fr !important;
-        min-height: auto !important;
-      }
     }
 
     /* ===== SCROLL ANIMATIONS ===== */
@@ -2042,7 +2091,7 @@
     </div>
   </div>
   <aside class="hero-shape-rail" aria-hidden="true">
-<svg width="255" height="879" viewBox="0 0 255 879" preserveAspectRatio="xMidYMid meet" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="255" height="879" viewBox="0 0 255 879" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <path d="M153.141 -2.75534C147.61 -3.30582 143.062 1.23272 143.062 6.79131L143.062 196.634C143.062 202.193 147.61 206.731 153.141 206.181C207.53 200.768 249.963 156.062 249.963 101.713C249.963 47.3632 207.53 2.65756 153.141 -2.75534Z" fill="#1C1932"/>
 <path d="M98.5485 58.4033C73.9661 58.4033 54.0361 77.7929 54.0361 101.713C54.0361 125.633 73.9661 145.022 98.5485 145.022C123.131 145.022 143.063 125.631 143.063 101.713C143.063 77.7946 123.133 58.4033 98.5485 58.4033Z" fill="#1C1932"/>
 <path d="M151.896 233.118C151.896 224.237 141.182 219.762 134.866 226.005L52.5504 307.364C50.6498 309.243 49.5801 311.804 49.5801 314.477V387.089C49.5801 395.97 60.2934 400.444 66.6097 394.201L148.925 312.842C150.826 310.964 151.896 308.402 151.896 305.73V233.118Z" fill="#1C1932"/>
@@ -2577,93 +2626,59 @@
   </div>
 </section>
 
-<!-- ===================== GET IN TOUCH ===================== -->
-<!--
-  Figma node 266:4792 — "Get in Touch"
-  Layout: 2-col, left = text+form, right = colorful mosaic of rectangles
-  The right side has 8 colored rectangles (4 across × 2 rows)
-  matching Rectangle 314/319/315/320/316/321/322/323 from Figma
--->
-<section id="contact">
-  <div class="contact-wrap">
+<!-- ===================== INVITE / CONTACT ===================== -->
+<section id="contact" class="invite-section">
+  <div class="invite-bg-img" aria-hidden="true">
+    <img src="images/contact section bg.png" alt="" />
+  </div>
+  <div class="invite-overlay" aria-hidden="true"></div>
 
-    <!-- LEFT: title + description + email form -->
-    <div class="contact-left fade-up">
-      <div class="contact-text-block">
-        <h2>Get in Touch</h2>
-        <p>Drop your email, and you'll be contacted by one of our support team.</p>
-      </div>
-      <div class="contact-form" role="form" aria-label="Contact form">
-        <input
-          type="email"
-          id="contactEmail"
-          placeholder="your@email.com"
-          aria-label="Email address"
-          autocomplete="email"
-        />
-        <button type="button" onclick="handleContactSubmit()" aria-label="Submit email">
-          Get Started
-          <img src="images/icon custom btn.svg" alt="" width="20" height="20" />
+  <div class="invite-inner">
+    <!-- LEFT: text -->
+    <div class="invite-text fade-up">
+      <span class="invite-badge">Invite Our Experts</span>
+      <h2>Invite Digital Next<br>to Your Event</h2>
+      <p>Expert speakers in Digital Transformation, LCNC, and AI ready to inspire your audience.</p>
+    </div>
+
+    <!-- RIGHT: form -->
+    <div class="invite-form-wrap fade-up fade-up-delay-1">
+      <form class="invite-form" onsubmit="event.preventDefault();">
+        <div class="invite-row">
+          <div class="invite-field">
+            <label>Full Name</label>
+            <input type="text" placeholder="full name" />
+          </div>
+          <div class="invite-field">
+            <label>Event Name</label>
+            <input type="text" placeholder="event name" />
+          </div>
+        </div>
+        <div class="invite-row">
+          <div class="invite-field">
+            <label>Email Address</label>
+            <input type="email" placeholder="email address" />
+          </div>
+          <div class="invite-field">
+            <label>Phone Number <span class="field-opt">optional</span></label>
+            <input type="tel" placeholder="phone number" />
+          </div>
+        </div>
+        <div class="invite-field">
+          <label>Message <span class="field-opt">optional</span></label>
+          <textarea placeholder="your message..." rows="3"></textarea>
+        </div>
+        <button type="submit" class="invite-submit">
+          Submit Request
+          <svg viewBox="0 0 16 16" width="16" height="16" fill="none" aria-hidden="true"><path d="M3 13L13 3M13 3H7M13 3V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
-      </div>
-      <p class="contact-success" id="contactSuccess" style="display:none; color:var(--primary-600); font-size:14px; font-weight:500;">
-        ✓ Thanks! We'll be in touch soon.
-      </p>
+      </form>
     </div>
-
-    <!-- RIGHT: decorative background image -->
-    <div class="contact-mosaic fade-up fade-up-delay-1" aria-hidden="true">
-      <img src="images/Get in Touch bg image.png" alt="" style="width:100%; height:100%; object-fit:cover; display:block;" />
-    </div>
-
   </div>
 </section>
 
 <!-- ===================== FOOTER ===================== -->
 <footer>
-
-  <!-- Invite to event banner -->
-  <div class="footer-invite-wrap">
-    <div class="footer-invite" style="background: url('images/contact section bg.png') center/cover no-repeat; padding: 0; display: grid; grid-template-columns: 1fr 1fr; min-height: 500px; border-radius: 2px; position: relative; overflow: hidden;">
-      <div class="footer-invite" style="background: transparent; padding: 64px 52px; display: flex; flex-direction: column; justify-content: center; gap: 16px; position: relative; z-index: 1;">
-        <span style="display: inline-block; background: var(--primary-600); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 6px 14px; border-radius: 2px; width: fit-content;">Invite Our Events</span>
-        <h2 style="font-size: clamp(22px, 2.5vw, 36px); font-weight: 700; max-width: 380px; color: #fff; line-height: 1.2;">Invite Digital Next<br>to Your Event</h2>
-        <p style="font-size: 15px; color: rgba(255,255,255,0.75); max-width: 380px; line-height: 1.6;">Expert Speakers in Digital Transformation, LCNC, and AI ready to inspire your audience.</p>
-      </div>
-      <div style="padding: 48px 52px; display: flex; align-items: center; justify-content: center; position: relative; z-index: 1;">
-        <form class="invite-form" style="width: 100%; max-width: 440px; display: flex; flex-direction: column; gap: 16px;" onsubmit="event.preventDefault();">
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
-            <div>
-              <label style="display: block; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.7); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;">Full Name</label>
-              <input type="text" placeholder="Full Name" style="width: 100%; padding: 12px 14px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 2px; color: #fff; font-family: var(--font); font-size: 14px; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--primary-400)'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'" />
-            </div>
-            <div>
-              <label style="display: block; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.7); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;">Event Name</label>
-              <input type="text" placeholder="Event Name" style="width: 100%; padding: 12px 14px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 2px; color: #fff; font-family: var(--font); font-size: 14px; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--primary-400)'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'" />
-            </div>
-          </div>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
-            <div>
-              <label style="display: block; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.7); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;">Email Address</label>
-              <input type="email" placeholder="Email Address" style="width: 100%; padding: 12px 14px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 2px; color: #fff; font-family: var(--font); font-size: 14px; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--primary-400)'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'" />
-            </div>
-            <div>
-              <label style="display: block; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.7); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;">Phone Number</label>
-              <input type="tel" placeholder="Phone Number" style="width: 100%; padding: 12px 14px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 2px; color: #fff; font-family: var(--font); font-size: 14px; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--primary-400)'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'" />
-            </div>
-          </div>
-          <div>
-            <label style="display: block; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.7); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;">Message</label>
-            <textarea placeholder="Your message..." rows="4" style="width: 100%; padding: 12px 14px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 2px; color: #fff; font-family: var(--font); font-size: 14px; outline: none; resize: vertical; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--primary-400)'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'"></textarea>
-          </div>
-          <button type="submit" style="display: inline-flex; align-items: center; gap: 8px; background: var(--primary-600); color: #fff; border: none; padding: 14px 28px; border-radius: 2px; font-family: var(--font); font-size: 14px; font-weight: 600; cursor: pointer; transition: background 0.2s; width: fit-content; align-self: flex-end;" onmouseover="this.style.background='var(--primary-700)'" onmouseout="this.style.background='var(--primary-600)'">
-            Submit Request
-            <img src="images/icon custom btn.svg" alt="" width="18" height="18" />
-          </button>
-        </form>
-      </div>
-    </div>
-  </div>
 
   <!-- Footer links grid -->
   <div class="footer-body">
