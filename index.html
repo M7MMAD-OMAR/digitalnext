@@ -1190,10 +1190,18 @@
 
     /* ===================== RESEARCH ===================== */
     #research {
-      background: #FAFAFA url('images/bg Research & Case Studies.png') center/cover no-repeat;
+      background: #FAFAFA;
       color: var(--text-fg);
       position: relative;
       overflow: hidden;
+    }
+    #research .research-bg {
+      position: absolute;
+      inset: 0;
+      background: url('images/bg Research & Case Studies.png') center/cover no-repeat;
+      opacity: 0.4;
+      pointer-events: none;
+      z-index: 0;
     }
     /* Decorative background circles */
     #research::before {
@@ -1244,27 +1252,17 @@
       line-height: 1.5;
     }
 
-    /* Zigzag layout */
+    /* Card grid layout */
     .research-layout {
-      display: flex;
-      flex-direction: column;
-      gap: 64px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
     }
     .research-item {
-      display: grid;
-      grid-template-columns: 2fr 3fr;
-      gap: 48px;
-      align-items: center;
+      display: block;
     }
-    /* Reversed items: image on right */
-    .research-item.reversed {
-      grid-template-columns: 3fr 2fr;
-    }
-    .research-item.reversed .research-img {
-      order: 2;
-    }
-    .research-item.reversed .research-text {
-      order: 1;
+    .research-item .research-text {
+      display: none;
     }
 
     /* Image container with overlay text */
@@ -1275,7 +1273,7 @@
     }
     .research-img img {
       width: 100%;
-      height: 420px;
+      height: 520px;
       object-fit: cover;
       display: block;
       transition: transform 0.5s ease;
@@ -1391,34 +1389,23 @@
 
     /* Responsive — tablet */
     @media (max-width: 1024px) {
-      .research-item {
-        grid-template-columns: 1fr 1fr;
-        gap: 32px;
-      }
-      .research-item.reversed {
-        grid-template-columns: 1fr 1fr;
+      .research-layout {
+        grid-template-columns: repeat(2, 1fr);
       }
       .research-img img {
-        height: 340px;
+        height: 400px;
       }
     }
     /* Responsive — mobile */
     @media (max-width: 768px) {
-      .research-item,
-      .research-item.reversed {
+      .research-layout {
         grid-template-columns: 1fr;
-        gap: 24px;
       }
-      .research-item.reversed .research-img { order: 0; }
-      .research-item.reversed .research-text { order: 0; }
       .research-img img {
-        height: 300px;
+        height: 340px;
       }
       .research-img-overlay {
         padding: 20px 24px;
-      }
-      .research-text {
-        padding: 0 4px;
       }
       .research-layout {
         gap: 48px;
@@ -1505,6 +1492,10 @@
       bottom: 0;
       padding: 16px 16px 14px;
       background: rgba(4, 4, 16, 0.78);
+      transition: transform 0.3s ease;
+    }
+    .meet-team-section .team-card:hover .team-info {
+      transform: translateY(-12px);
     }
     .meet-team-section .team-name {
       margin: 0 0 8px;
@@ -1904,6 +1895,224 @@
     }
 
     /* ============================================================
+       COMPREHENSIVE MOBILE RESPONSIVENESS FIXES
+       ============================================================ */
+
+    @media (max-width: 480px) {
+
+      /* ── Global ── */
+      .container { padding: 0 16px; }
+      .section-pad { padding: 48px 0; min-height: auto; }
+
+      /* ── Navbar ── */
+      .navbar { top: 8px; padding: 0 10px; }
+      .navbar-inner { padding: 10px 14px; }
+      .navbar-logo-text { font-size: 17px; }
+
+      /* ── Hero ── */
+      #hero { min-height: 85vh; }
+      .hero-content {
+        min-height: 85vh;
+        padding: 100px 16px 28px;
+      }
+      .hero-title { font-size: clamp(30px, 9vw, 42px); }
+      .hero-sub { font-size: clamp(16px, 4.5vw, 22px); }
+      .hero-circle-btn { width: 130px; height: 130px; }
+
+      /* ── AI-Powered Cards ── */
+      .ai-card { min-height: 260px; }
+      .ai-card-text { padding: 24px 20px; }
+      .ai-card-text h3 { font-size: 18px; }
+      .ai-card-text p { font-size: 14px; }
+
+      /* ── About ── */
+      #about .about-left h2 { font-size: clamp(28px, 8vw, 38px); }
+      .about-card { min-height: 0; padding: 28px 20px; }
+      .about-card .about-card-icon { width: 52px; height: 52px; }
+
+      /* ── Success Stories ── */
+      #success .section-title { font-size: clamp(28px, 8vw, 42px); }
+      .story-main { min-height: 300px; border-radius: 0 120px 120px 0; }
+      .story-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .story-grid-item { min-height: 140px; }
+
+      /* ── Awards ── */
+      #awards { padding: 64px 0 56px; min-height: auto; }
+      .aw-header h2 { font-size: clamp(24px, 7vw, 36px); }
+      .aw-subtitle { margin-bottom: 40px; font-size: 14px; }
+      .aw-trophy-wrap { width: 180px; height: 180px; }
+      .aw-row-title { font-size: 16px; }
+      .aw-row-desc { font-size: 13px; }
+
+      /* ── Partnerships ── */
+      #partnerships { padding: 64px 0 56px; min-height: auto; }
+      .tp-title-wrap h2 { font-size: 28px; }
+      .tp-title-wrap { margin-bottom: 36px; }
+      .tp-circles { gap: 10px; }
+      .tp-circle { min-height: 110px; }
+      .tp-circle.arch-left { min-height: 100px; }
+      .tp-logo .brand { font-size: 32px; }
+      .tp-logo .sub { font-size: 9px; }
+      .tp-card { border-radius: 16px; }
+      .tp-card-text { padding: 24px 20px; }
+      .tp-card-text h3 { font-size: 20px; }
+      .tp-card-text p { font-size: 13px; }
+      .tp-trusted-label { margin-top: 40px; }
+      .tp-trusted-label span { font-size: 16px; }
+      .tp-logos-row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+      .tp-logo-item { padding: 14px 10px; }
+      .tp-logo-item img { max-height: 34px; }
+
+      /* ── Research & Case Studies ── */
+      #research { min-height: auto; }
+      .research-header { margin-bottom: 28px; }
+      .research-header h2 { font-size: clamp(24px, 7vw, 36px); }
+      .research-text { display: none; }
+      .research-img img { height: 260px; }
+      .research-img-overlay { padding: 16px 18px; }
+      .research-img-title { font-size: 15px; }
+      .research-layout { gap: 24px; }
+      .research-more { margin-top: 40px; }
+
+      /* ── Meet Our Team ── */
+      .meet-team-section {
+        padding: 56px 12px 60px;
+        min-height: auto;
+        overflow: hidden;
+      }
+      .meet-team-section .team-container { padding: 0 8px; }
+      .meet-team-section .team-heading { font-size: 24px; }
+      .meet-team-section .team-heading-accent { width: 22px; height: 22px; }
+      .meet-team-section .team-heading-wrap { margin-bottom: 28px; }
+      .meet-team-section .team-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        max-width: 100%;
+      }
+      .meet-team-section .team-card {
+        max-width: 100%;
+        border-radius: 12px;
+      }
+      .meet-team-section .team-image {
+        width: 100%;
+        height: auto;
+        max-height: 400px;
+        object-fit: cover;
+        object-position: top center;
+      }
+      .meet-team-section .team-info {
+        left: 10px;
+        right: 10px;
+        padding: 12px 14px 10px;
+      }
+      .meet-team-section .team-name { font-size: 14px; margin-bottom: 4px; }
+      .meet-team-section .team-role { font-size: 11px; }
+
+      /* ── Get In Touch Card ── */
+      .git-card { margin-top: 36px; }
+      .git-card-inner {
+        padding: 28px 18px;
+        min-height: auto;
+        flex-direction: column;
+      }
+      .git-card-text h2 { font-size: 22px; }
+      .git-card-text p { font-size: 13px; }
+      .git-card-btn { padding: 10px 22px; font-size: 13px; }
+
+      /* ── Invite / Contact ── */
+      .invite-section { padding-top: 100px; min-height: auto; }
+      .invite-inner {
+        padding: 40px 16px;
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+      .invite-text { align-items: center; text-align: center; }
+      .invite-badge { font-size: 10px; padding: 5px 12px; }
+      .invite-text h2 { font-size: clamp(20px, 6vw, 28px); max-width: none; }
+      .invite-text p { font-size: 13px; max-width: none; }
+      .invite-form-wrap { padding: 22px 16px; }
+      .invite-row { grid-template-columns: 1fr; }
+      .invite-field label { font-size: 11px; }
+      .invite-field input,
+      .invite-field textarea { font-size: 13px; padding: 10px 12px; }
+      .invite-submit { width: 100%; justify-content: center; padding: 12px 24px; font-size: 13px; }
+
+      /* ── Footer ── */
+      .footer-body {
+        grid-template-columns: 1fr;
+        padding: 48px 16px 32px;
+        gap: 28px;
+      }
+      .footer-brand-logo { font-size: 18px; }
+      .footer-brand p { font-size: 13px; }
+      .footer-col h4 { font-size: 11px; margin-bottom: 14px; }
+      .footer-col ul li a { font-size: 13px; }
+      .footer-bottom {
+        padding: 20px 16px 32px;
+        margin-left: 0; margin-right: 0;
+        flex-direction: column;
+        text-align: center;
+        font-size: 12px;
+      }
+    }
+
+    /* ── Additional fix: team section for tablets (641–900px) ── */
+    @media (min-width: 641px) and (max-width: 900px) {
+      .meet-team-section .team-container { padding: 0 20px; }
+      .meet-team-section .team-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+      }
+      .meet-team-section .team-image {
+        max-height: 450px;
+        object-fit: cover;
+        object-position: top center;
+      }
+    }
+    /* ── Team section phone fix (≤640px) ── */
+    @media (max-width: 640px) {
+      .meet-team-section {
+        padding: 56px 0 60px;
+        min-height: auto;
+        overflow: hidden;
+      }
+      .meet-team-section .team-container { padding: 0 16px; width: 100%; max-width: 100%; overflow: hidden; box-sizing: border-box; }
+      .meet-team-section .team-heading-wrap { gap: 8px; margin-bottom: 24px; justify-content: center; overflow: hidden; }
+      .meet-team-section .team-heading { font-size: 20px; text-align: center; white-space: normal; word-break: break-word; }
+      .meet-team-section .team-heading-accent { display: none; }
+      .meet-team-section .team-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px;
+      }
+      .meet-team-section .team-card { border-radius: 12px; }
+      .meet-team-section .team-image {
+        width: 100%;
+        height: auto;
+        max-height: 380px;
+        object-fit: cover;
+        object-position: top center;
+      }
+      .meet-team-section .team-info {
+        left: 10px; right: 10px;
+        padding: 12px 14px 10px;
+      }
+      .meet-team-section .team-name { font-size: 14px; margin-bottom: 4px; }
+      .meet-team-section .team-role { font-size: 11px; }
+    }
+
+    /* ── Prevent horizontal overflow globally ── */
+    @media (max-width: 768px) {
+      html, body { overflow-x: hidden; }
+      .meet-team-section { overflow: hidden; }
+      #partnerships { overflow: hidden; }
+      .research-text { display: none; }
+      .research-item,
+      .research-item.reversed {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ============================================================
        ENHANCED ANIMATIONS & HOVER EFFECTS
        ============================================================ */
 
@@ -2290,66 +2499,6 @@
   </div>
 </section>
 
-<!-- ===================== ABOUT ===================== -->
-<section id="about" class="section-pad">
-  <div class="container">
-    <div class="section-header fade-up">
-      <h2 class="section-title">About Digital Next</h2>
-    </div>
-    <div class="about-layout">
-      <div class="about-top">
-        <div class="about-left fade-up">
-          <p>Build your business solution using low code/no code; mobile apps, web apps, automations, workflows, and more.</p>
-          <a href="#contact" class="btn-primary">
-            About US <img src="images/icon custom btn.svg" alt="" width="20" height="20" />
-          </a>
-        </div>
-        <div class="about-row about-top-cards fade-up fade-up-delay-1">
-          <div class="about-card cap-right">
-            <div class="about-card-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M7 6h12M7 12h12M7 18h12"/>
-                <path d="M3 6l1.6 1.6L6.8 5.4M3 12l1.6 1.6L6.8 11.4M3 18l1.6 1.6L6.8 17.4"/>
-              </svg>
-            </div>
-            <p>We create the IT registry catalog that contains all the elements of the IT landscape.</p>
-          </div>
-          <div class="about-card cap-quarter">
-            <div class="about-card-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M4 18h16M6 16V6M6 16l5-5 3 3 4-6"/>
-                <path d="M18 8h4v4"/>
-              </svg>
-            </div>
-            <p>We measure, plot, and link the findings to a 4Ps diagram.</p>
-          </div>
-        </div>
-      </div>
-      <div class="about-row about-bottom-cards fade-up fade-up-delay-2">
-        <div class="about-card circle">
-          <div class="about-card-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24">
-              <path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/>
-              <path d="M9 4v14M15 6v14"/>
-            </svg>
-          </div>
-          <p>We analyze and produce an optimized IT landscape score, IT landscape map, and SWOT analysis.</p>
-        </div>
-        <div class="about-card cap-quarter">
-          <div class="about-card-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24">
-              <rect x="4" y="4" width="6" height="6"/>
-              <rect x="14" y="4" width="6" height="6"/>
-              <rect x="4" y="14" width="6" height="6"/>
-              <rect x="14" y="14" width="6" height="6"/>
-            </svg>
-          </div>
-          <p>We analyze, understand, and suggest the right LCNC platform that matches your needs.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ===================== SUCCESS STORIES ===================== -->
 <section id="success" class="section-pad">
@@ -2601,74 +2750,6 @@
   </div>
 </section>
 
-<!-- ===================== RESEARCH & CASE STUDIES ===================== -->
-<section id="research" class="section-pad">
-  <!-- Extra decorative circle -->
-  <div class="research-bg-circle" aria-hidden="true"></div>
-
-  <div class="container">
-    <div class="research-header fade-up">
-      <h2>Research &amp; Case Studies</h2>
-      <p>In-Depth Studies on Digital Transformation</p>
-    </div>
-
-    <div class="research-layout">
-
-      <!-- Article 1 — image LEFT, capsule bottom-right -->
-      <div class="research-item fade-up">
-        <div class="research-img shape-br">
-          <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80" alt="Improving Workflow Efficiency with Smart Task Management" loading="lazy" decoding="async" />
-          <div class="research-img-overlay">
-            <p class="research-img-date">Dec 2024</p>
-            <h3 class="research-img-title">Improving Workflow Efficiency with Smart Task Management</h3>
-          </div>
-        </div>
-        <div class="research-text">
-          <p class="research-date">Dec 2024</p>
-          <h3 class="research-title">Improving Workflow Efficiency with Smart Task Management</h3>
-          <p class="research-excerpt">Discover how intelligent task prioritization and automated workflows help enterprises reduce bottlenecks and accelerate delivery across distributed teams.</p>
-        </div>
-      </div>
-
-      <!-- Article 2 — image RIGHT, rounded top-left & bottom-left -->
-      <div class="research-item reversed fade-up fade-up-delay-1">
-        <div class="research-img shape-tl-bl">
-          <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80" alt="The Rise of No-Code: Faster Development for Modern Teams" loading="lazy" decoding="async" />
-          <div class="research-img-overlay">
-            <p class="research-img-date">Nov 2024</p>
-            <h3 class="research-img-title">The Rise of No-Code: Faster Development for Modern Teams</h3>
-          </div>
-        </div>
-        <div class="research-text">
-          <p class="research-date">Nov 2024</p>
-          <h3 class="research-title">The Rise of No-Code: Faster Development for Modern Teams</h3>
-          <p class="research-excerpt">Explore how no-code platforms are reshaping enterprise application development, enabling citizen developers to ship production-ready solutions in record time.</p>
-        </div>
-      </div>
-
-      <!-- Article 3 — image RIGHT, rounded top-left -->
-      <div class="research-item reversed fade-up fade-up-delay-2">
-        <div class="research-img shape-tl">
-          <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80" alt="Modern ERP Adoption for Scalable Enterprises" loading="lazy" decoding="async" />
-          <div class="research-img-overlay">
-            <p class="research-img-date">Oct 2024</p>
-            <h3 class="research-img-title">Modern ERP Adoption for Scalable Enterprises</h3>
-          </div>
-        </div>
-        <div class="research-text">
-          <p class="research-date">Oct 2024</p>
-          <h3 class="research-title">Modern ERP Adoption for Scalable Enterprises</h3>
-          <p class="research-excerpt">A comprehensive study on how next-generation ERP systems drive operational agility and data-driven decision-making across growing organizations.</p>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="research-more fade-up">
-      <a href="#" class="btn-outline">View All Studies <img src="images/icon custom btn.svg" alt="" width="20" height="20" /></a>
-    </div>
-  </div>
-</section>
 
 <!-- ===================== MEET OUR TEAM ===================== -->
 <section id="team" class="meet-team-section">
@@ -2745,22 +2826,6 @@
       </article>
     </div>
 
-    <!-- GET IN TOUCH CARD -->
-    <div class="git-card">
-      <div class="git-card-inner fade-up">
-        <div class="git-card-text">
-          <h2>Get in Touch</h2>
-          <p>Drop your email, and you'll be contacted by one of our support team.</p>
-          <a href="#contact" class="git-card-btn">
-            Contact US
-            <img src="images/icon custom btn.svg" alt="" />
-          </a>
-        </div>
-        <div class="git-card-img">
-          <img src="images/Get in Touch bg image.png" alt="" />
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -2855,8 +2920,6 @@
       <ul>
         <li><a href="/cdn-cgi/l/email-protection#432b262f2f2c03272a242a37222f2d263b376d202c2e"><img src="images/icon/envelope.svg" alt="" class="footer-icon" /><span class="__cf_email__" data-cfemail="a6cec3cacac9e6c2cfc1cfd2c7cac8c3ded288c5c9cb">[email&#160;protected]</span></a></li>
         <li><a href="#"><img src="images/icon/map-pin.svg" alt="" class="footer-icon" />Dubai, UAE</a></li>
-        <li><a href="#"><img src="images/icon/linkedin.svg" alt="" class="footer-icon" />LinkedIn</a></li>
-        <li><a href="#"><img src="images/icon/x-logo.svg" alt="" class="footer-icon" />Twitter / X</a></li>
       </ul>
     </div>
   </div>
