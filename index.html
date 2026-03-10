@@ -54,7 +54,7 @@
 
     /* ===== UTILITY ===== */
     .container { max-width: 1400px; margin: 0 auto; padding: 0 52px; }
-    .section-pad { padding: 100px 0; }
+    .section-pad { padding: 100px 0; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
     @media (max-width: 1024px) { .container { padding: 0 32px; } .section-pad { padding: 72px 0; } }
     @media (max-width: 768px)  { .container { padding: 0 20px; } .section-pad { padding: 56px 0; } }
 
@@ -713,6 +713,10 @@
       background: var(--blue-600);   /* #1C1932 deep navy */
       color: #fff;
       padding: 100px 0 80px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       position: relative;
       overflow: hidden;
     }
@@ -909,6 +913,10 @@
     #partnerships {
       background: #dfdfe2;
       padding: 100px 0 84px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       overflow: hidden;
     }
 
@@ -1439,6 +1447,10 @@
       position: relative;
       overflow: hidden;
       padding: 96px 28px 110px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       background:
         radial-gradient(circle at left 75%, rgba(142, 0, 27, 0.35), transparent 28%),
         linear-gradient(180deg, #05051b 0%, #06061d 45%, #200818 100%);
@@ -1479,14 +1491,12 @@
     .meet-team-section .team-card {
       position: relative;
       overflow: hidden;
-      min-height: 305px;
     }
     .meet-team-section .team-image {
       display: block;
       width: 100%;
-      aspect-ratio: 3 / 4;
-      object-fit: cover;
-      object-position: center 20%;
+      height: auto;
+      object-fit: contain;
     }
     .meet-team-section .team-info {
       position: absolute;
@@ -1517,6 +1527,80 @@
       .meet-team-section .team-grid { grid-template-columns: 1fr; gap: 20px; }
       .meet-team-section .team-heading { font-size: 28px; padding: 0 12px; }
       .meet-team-section .team-heading-accent { width: 28px; height: 28px; }
+    }
+
+    /* ===================== GET IN TOUCH CARD ===================== */
+    .git-section {
+      padding: 80px 0;
+      background: var(--bg-subtle);
+    }
+    .git-card {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 52px;
+    }
+    .git-card-inner {
+      position: relative;
+      background: #8B0A1E;
+      border-radius: 16px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 280px;
+    }
+    .git-card-text {
+      padding: 56px 52px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 16px;
+      z-index: 1;
+    }
+    .git-card-text h2 {
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.15;
+      font-style: italic;
+    }
+    .git-card-text p {
+      font-size: 16px;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.5;
+      max-width: 400px;
+    }
+    .git-card-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--blue-600);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 14px 28px;
+      border-radius: 6px;
+      width: fit-content;
+      transition: opacity 0.2s;
+    }
+    .git-card-btn:hover { opacity: 0.88; }
+    .git-card-btn img { width: 16px; height: 16px; filter: brightness(0) invert(1); }
+    .git-card-img {
+      position: relative;
+    }
+    .git-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    @media (max-width: 900px) {
+      .git-card-inner { grid-template-columns: 1fr; }
+      .git-card-img { min-height: 200px; }
+      .git-card { padding: 0 32px; }
+    }
+    @media (max-width: 768px) {
+      .git-card { padding: 0 20px; }
+      .git-card-text { padding: 40px 32px; }
     }
 
     /* ===================== INVITE / CONTACT SECTION ===================== */
@@ -1698,16 +1782,37 @@
     footer {
       background: var(--blue-800);
       color: var(--text-inv);
+      position: relative;
+      overflow: hidden;
+    }
+    .footer-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .footer-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .footer-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(17,16,31,0.25);
+      z-index: 1;
     }
 
     /* ---- Footer body ---- */
     .footer-body {
-      padding: 64px 52px 0;
+      padding: 80px 52px 0;
       display: grid;
       grid-template-columns: 2fr 1fr 1fr 1fr;
       gap: 40px;
       max-width: 1400px;
       margin: 0 auto;
+      position: relative;
+      z-index: 2;
     }
     .footer-brand-logo {
       display: flex; align-items: center; gap: 2px;
@@ -1739,12 +1844,14 @@
     /* ---- Footer bottom ---- */
     .footer-bottom {
       margin: 48px auto 0;
-      padding: 24px 52px;
+      padding: 24px 52px 32px;
       border-top: 1px solid rgba(255,255,255,0.08);
       display: flex; align-items: center; justify-content: space-between;
       font-size: 13px; color: var(--blue-50);
       gap: 16px; flex-wrap: wrap;
       max-width: 1400px;
+      position: relative;
+      z-index: 2;
     }
 
     @media (max-width: 1024px) {
@@ -2023,16 +2130,6 @@
       }
     }
 
-    .footer-image-wrap {
-      width: 100%;
-      overflow: hidden;
-    }
-    .footer-image {
-      width: 100%;
-      height: auto;
-      display: block;
-      opacity: 0.6;
-    }
   </style>
 </head>
 <body>
@@ -2679,12 +2776,16 @@
 
 <!-- ===================== FOOTER ===================== -->
 <footer>
+  <div class="footer-bg" aria-hidden="true">
+    <img src="images/Footer image.png" alt="" />
+  </div>
+  <div class="footer-overlay" aria-hidden="true"></div>
 
   <!-- Footer links grid -->
   <div class="footer-body">
     <div class="footer-brand">
       <div class="footer-brand-logo">
-        <img src="images/Digital-next-Logo-w.png" alt="Digital Next" loading="lazy" decoding="async" />
+        <img src="images/Light-logo.png" alt="Digital Next" loading="lazy" decoding="async" />
       </div>
       <p>Transformation, optimization, and consultation for businesses, organizations, and individuals.</p>
     </div>
@@ -2723,10 +2824,6 @@
   <div class="footer-bottom">
     <span>© 2025 Digital Next. All rights reserved.</span>
     <span>Privacy Policy · Terms of Service</span>
-  </div>
-
-  <div class="footer-image-wrap">
-    <img src="images/Footer image.png" alt="" class="footer-image" loading="lazy" decoding="async" />
   </div>
 
 </footer>
