@@ -643,9 +643,18 @@
       overflow: hidden;
       min-height: 450px;
     }
-    .story-main img { width: 100%; height: 100%; object-fit: cover; }
+    .story-main img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      z-index: 1;
+    }
     .story-main-overlay {
       position: absolute;
+      z-index: 2;
       bottom: 0;
       left: 0;
       right: 0;
@@ -706,6 +715,7 @@
       gap: 16px;
     }
     .story-grid-item {
+      position: relative;
       overflow: hidden;
       min-height: 216px;
     }
@@ -714,9 +724,12 @@
     .story-grid-item:nth-child(3) { border-radius: 0 0 170px 0; }
     .story-grid-item:nth-child(4) { border-radius: 170px 0 0 0; }
     .story-grid-item img {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
+      display: block;
     }
     @media (max-width: 1100px) {
       .story-main-title { font-size: 16px; }
@@ -1644,10 +1657,11 @@
     /* ---- Footer body ---- */
     .footer-body {
       padding: 80px 52px 48px;
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
       gap: 40px;
-      max-width: 1400px;
+      max-width: 800px;
       margin: 0 auto;
       position: relative;
       z-index: 2;
@@ -1695,20 +1709,19 @@
       margin: 48px auto 0;
       padding: 24px 52px 48px;
       border-top: 1px solid rgba(255,255,255,0.08);
-      display: flex; align-items: center; justify-content: space-between;
+      display: flex; align-items: center; justify-content: center;
       font-size: 13px; color: var(--blue-50);
       gap: 16px; flex-wrap: wrap;
-      max-width: 1400px;
+      max-width: 800px;
       position: relative;
       z-index: 2;
     }
 
     @media (max-width: 1024px) {
-      .footer-body { grid-template-columns: 1fr 1fr; }
       .footer-body, .footer-bottom { padding-left: 32px; padding-right: 32px; }
     }
     @media (max-width: 600px) {
-      .footer-body { grid-template-columns: 1fr; padding-left: 20px; padding-right: 20px; }
+      .footer-body { flex-direction: column; padding-left: 20px; padding-right: 20px; }
       .footer-bottom { margin-left: 20px; margin-right: 20px; }
     }
 
@@ -2512,66 +2525,66 @@
 
     <div class="team-grid">
       <article class="team-card fade-up">
-        <img src="images/Karim Al-Samir.png" alt="Karim Al-Samir" class="team-image">
+        <img src="images/Team/1.png" alt="Ahmad Alhamadi" class="team-image">
         <div class="team-info">
-          <h3 class="team-name">Karim Al-Samir</h3>
-          <p class="team-role">Developer</p>
+          <h3 class="team-name">Ahmad Alhamadi</h3>
+          <p class="team-role">Digital Transformation Director</p>
         </div>
       </article>
 
       <article class="team-card fade-up fade-up-delay-1">
-        <img src="images/Rami Daoud.png" alt="Rami Daoud" class="team-image">
+        <img src="images/Team/2.png" alt="TRON" class="team-image">
         <div class="team-info">
-          <h3 class="team-name">Rami Daoud</h3>
+          <h3 class="team-name">TRON</h3>
+          <p class="team-role">CTO</p>
+        </div>
+      </article>
+
+      <article class="team-card fade-up fade-up-delay-2">
+        <img src="images/Team/3.png" alt="Jamal Hussein Weldali" class="team-image">
+        <div class="team-info">
+          <h3 class="team-name">Jamal Hussein Weldali</h3>
+          <p class="team-role">Senior Project Manager</p>
+        </div>
+      </article>
+
+      <article class="team-card fade-up">
+        <img src="images/Team/4.png" alt="Feras Taleb" class="team-image">
+        <div class="team-info">
+          <h3 class="team-name">Feras Taleb</h3>
           <p class="team-role">Project Manager</p>
         </div>
       </article>
 
-      <article class="team-card fade-up fade-up-delay-2">
-        <img src="images/Omar Yassin.png" alt="Omar Yassin" class="team-image">
-        <div class="team-info">
-          <h3 class="team-name">Omar Yassin</h3>
-          <p class="team-role">Senior Software Engineer</p>
-        </div>
-      </article>
-
-      <article class="team-card fade-up">
-        <img src="images/Ahmad Salem.png" alt="Ahmad Salem" class="team-image">
-        <div class="team-info">
-          <h3 class="team-name">Ahmad Salem</h3>
-          <p class="team-role">Chief Executive Officer (CEO)</p>
-        </div>
-      </article>
-
       <article class="team-card fade-up fade-up-delay-1">
-        <img src="images/TRON.png" alt="TRON" class="team-image">
+        <img src="images/Team/5.png" alt="Khalil Albashatly" class="team-image">
         <div class="team-info">
-          <h3 class="team-name">TRON</h3>
-          <p class="team-role">Data Architecture &amp; Systems</p>
+          <h3 class="team-name">Khalil Albashatly</h3>
+          <p class="team-role">Sales</p>
         </div>
       </article>
 
       <article class="team-card fade-up fade-up-delay-2">
-        <img src="images/Rami Daoud (2).png" alt="Rami Daoud" class="team-image">
+        <img src="images/Team/6.png" alt="Musab Alawad" class="team-image">
         <div class="team-info">
-          <h3 class="team-name">Rami Daoud</h3>
-          <p class="team-role">Senior Software Engineer</p>
+          <h3 class="team-name">Musab Alawad</h3>
+          <p class="team-role">Growth</p>
         </div>
       </article>
 
       <article class="team-card fade-up">
-        <img src="images/NEXUS.png" alt="NEXUS" class="team-image">
+        <img src="images/Team/7.png" alt="NEXUS" class="team-image">
         <div class="team-info">
           <h3 class="team-name">NEXUS</h3>
-          <p class="team-role">Risk &amp; Cybersecurity</p>
+          <p class="team-role">HR Manager</p>
         </div>
       </article>
 
       <article class="team-card fade-up fade-up-delay-1">
-        <img src="images/Karim Al-Samir (2).png" alt="Karim Al-Samir" class="team-image">
+        <img src="images/Team/8.png" alt="TRX" class="team-image">
         <div class="team-info">
-          <h3 class="team-name">Karim Al-Samir</h3>
-          <p class="team-role">Senior Software Engineer</p>
+          <h3 class="team-name">TRX</h3>
+          <p class="team-role">Procurement</p>
         </div>
       </article>
     </div>
@@ -2596,30 +2609,30 @@
 
     <!-- RIGHT: form -->
     <div class="invite-form-wrap fade-up fade-up-delay-1">
-      <form class="invite-form" onsubmit="event.preventDefault();">
+      <form class="invite-form" onsubmit="return handleInviteSubmit(this);">
         <div class="invite-row">
           <div class="invite-field">
             <label>Full Name</label>
-            <input type="text" placeholder="full name" />
+            <input type="text" placeholder="full name" name="name" required />
           </div>
           <div class="invite-field">
             <label>Event Name</label>
-            <input type="text" placeholder="event name" />
+            <input type="text" placeholder="event name" name="event" required />
           </div>
         </div>
         <div class="invite-row">
           <div class="invite-field">
             <label>Email Address</label>
-            <input type="email" placeholder="email address" />
+            <input type="email" placeholder="email address" name="email" required />
           </div>
           <div class="invite-field">
             <label>Phone Number <span class="field-opt">optional</span></label>
-            <input type="tel" placeholder="phone number" />
+            <input type="tel" placeholder="phone number" name="phone" />
           </div>
         </div>
         <div class="invite-field">
           <label>Message <span class="field-opt">optional</span></label>
-          <textarea placeholder="your message..." rows="3"></textarea>
+          <textarea placeholder="your message..." rows="3" name="message"></textarea>
         </div>
         <button type="submit" class="invite-submit">
           Submit Request
@@ -2646,38 +2659,17 @@
       <p>Transformation, optimization, and consultation for businesses, organizations, and individuals.</p>
     </div>
     <div class="footer-col">
-      <h4>Services</h4>
-      <ul>
-        <li><a href="#ai-powered">Digital Transformation</a></li>
-        <li><a href="#ai-powered">AI Solutions</a></li>
-        <li><a href="#ai-powered">Low-Code / No-Code</a></li>
-        <li><a href="#ai-powered">Workflow Automation</a></li>
-        <li><a href="#ai-powered">IT Consulting</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Company</h4>
-      <ul>
-        <li><a href="#digital-experience">About Us</a></li>
-        <li><a href="#awards">Awards</a></li>
-        <li><a href="#success">Success Stories</a></li>
-        <li><a href="#partnerships">Partnerships</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
       <h4>Connect</h4>
       <ul>
-        <li><a href="/cdn-cgi/l/email-protection#432b262f2f2c03272a242a37222f2d263b376d202c2e"><img src="images/icon/envelope.svg" alt="" class="footer-icon" /><span class="__cf_email__" data-cfemail="a6cec3cacac9e6c2cfc1cfd2c7cac8c3ded288c5c9cb">[email&#160;protected]</span></a></li>
-        <li><a href="#"><img src="images/icon/map-pin.svg" alt="" class="footer-icon" />Dubai, UAE</a></li>
+        <li><a href="mailto:Info@digitalnext.io"><img src="images/icon/envelope.svg" alt="" class="footer-icon" />Info@digitalnext.io</a></li>
+        <li><a href="https://maps.google.com/?q=Abu+Dhabi,+UAE" target="_blank" rel="noopener"><img src="images/icon/map-pin.svg" alt="" class="footer-icon" />Abu Dhabi, UAE</a></li>
       </ul>
     </div>
   </div>
 
   <!-- Bottom bar -->
   <div class="footer-bottom">
-    <span>© 2025 Digital Next. All rights reserved.</span>
-    <span>Privacy Policy · Terms of Service</span>
+    <span>© <script>document.write(new Date().getFullYear())</script> Digital Next. All Rights Reserved.</span>
   </div>
 
 </footer>
@@ -2743,6 +2735,24 @@
     input.value = '';
     success.style.display = 'block';
     setTimeout(() => { success.style.display = 'none'; }, 4000);
+  }
+
+  function handleInviteSubmit(form) {
+    var name = form.name.value.trim();
+    var event = form.event.value.trim();
+    var email = form.email.value.trim();
+    var phone = form.phone.value.trim();
+    var message = form.message.value.trim();
+
+    var subject = encodeURIComponent('Event Invitation: ' + event);
+    var body = 'Name: ' + name + '\n'
+             + 'Event: ' + event + '\n'
+             + 'Email: ' + email + '\n'
+             + (phone ? 'Phone: ' + phone + '\n' : '')
+             + (message ? '\nMessage:\n' + message : '');
+
+    window.location.href = 'mailto:Info@digitalnext.io?subject=' + subject + '&body=' + encodeURIComponent(body);
+    return false;
   }
 
   // ── Awards interaction — hover (desktop) + tap (mobile) ──
@@ -2981,30 +2991,79 @@
     var resumeTimer   = null;
     var AUTO_INTERVAL = 5000;       // auto-advance every 5 s
     var RESUME_DELAY  = 8000;       // resume auto after 8 s of inactivity
-    var FADE_MS       = 400;        // fade transition length
+    var FADE_MS       = 500;        // crossfade transition length
 
     /* ── Inject transition CSS once ── */
     var css = document.createElement('style');
     css.textContent =
       '.story-main > img,' +
-      '.story-main-title,' +
       '.story-grid-item img {' +
-        'transition: opacity ' + FADE_MS + 'ms cubic-bezier(.4,0,.2,1);' +
+        'transition: opacity ' + FADE_MS + 'ms ease;' +
+        'will-change: opacity;' +
       '}' +
-      '.story-main > img.sc-fade,' +
-      '.story-main-title.sc-fade,' +
-      '.story-grid-item img.sc-fade {' +
-        'opacity: 0;' +
-      '}';
+      '.story-main-title {' +
+        'transition: opacity ' + Math.round(FADE_MS * 0.5) + 'ms ease;' +
+      '}' +
+      '.story-main-title.sc-fade { opacity: 0; }';
     document.head.appendChild(css);
+
+    /* ── Image cache ── */
+    var imageCache = {};
+
+    function preloadImage(src) {
+      if (imageCache[src]) return imageCache[src];
+      var p = new Promise(function (resolve) {
+        var img = new Image();
+        img.onload = function () { resolve(img); };
+        img.onerror = function () { resolve(img); };
+        img.src = src;
+      });
+      imageCache[src] = p;
+      return p;
+    }
+
+    // Preload ALL slide images on init for instant transitions
+    slides.forEach(function (slide) {
+      preloadImage(slide.mainImage);
+      slide.gridImages.forEach(preloadImage);
+    });
 
     /* ── Helpers ── */
     function updateCounter() {
       counter.textContent = (current + 1) + ' / ' + total;
     }
 
-    function preload(src) {
-      (new Image()).src = src;
+    /* ── Crossfade: layer new img on top, fade old out, clean up ── */
+    function crossfadeImage(container, newSrc, altText) {
+      var oldImg = container.querySelector('img:last-of-type');
+      var newImg = document.createElement('img');
+      newImg.src = newSrc;
+      newImg.alt = altText || '';
+      newImg.style.opacity = '0';
+      // Insert before overlay if present, otherwise append
+      var overlay = container.querySelector('.story-main-overlay');
+      if (overlay) {
+        container.insertBefore(newImg, overlay);
+      } else {
+        container.appendChild(newImg);
+      }
+
+      // Double-rAF ensures the browser has painted opacity:0 first
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          newImg.style.opacity = '1';
+          if (oldImg) oldImg.style.opacity = '0';
+        });
+      });
+
+      // Clean up old images after transition completes
+      setTimeout(function () {
+        var imgs = container.querySelectorAll('img');
+        for (var i = 0; i < imgs.length - 1; i++) {
+          imgs[i].remove();
+        }
+        newImg.style.opacity = '';
+      }, FADE_MS + 50);
     }
 
     /* ── Core transition ── */
@@ -3017,50 +3076,34 @@
       animating = true;
       var slide = slides[index];
 
-      // Pre-fetch every image so the swap is instantaneous
-      preload(slide.mainImage);
-      slide.gridImages.forEach(preload);
+      // Ensure images are loaded before starting transition
+      var promises = [preloadImage(slide.mainImage)];
+      slide.gridImages.forEach(function (src) { promises.push(preloadImage(src)); });
 
-      // --- Phase 1: fade out ---
-      mainImg.classList.add('sc-fade');
-      mainTitle.classList.add('sc-fade');
-      gridItems.forEach(function (item) {
-        var img = item.querySelector('img');
-        if (img) img.classList.add('sc-fade');
-      });
+      Promise.all(promises).then(function () {
+        // Crossfade main image
+        crossfadeImage(storyMain, slide.mainImage, slide.mainTitle);
 
-      // --- Phase 2: swap at opacity 0, then fade in ---
-      setTimeout(function () {
-        mainImg.src  = slide.mainImage;
-        mainImg.alt  = slide.mainTitle;
-        mainTitle.textContent = slide.mainTitle;
-
+        // Crossfade each grid image
         gridItems.forEach(function (item, i) {
-          var img = item.querySelector('img');
-          if (img && slide.gridImages[i]) {
-            img.src = slide.gridImages[i];
-            img.alt = slide.mainTitle + ' \u2014 detail ' + (i + 1);
+          if (slide.gridImages[i]) {
+            crossfadeImage(item, slide.gridImages[i], slide.mainTitle + ' — detail ' + (i + 1));
           }
         });
+
+        // Fade title text
+        mainTitle.classList.add('sc-fade');
+        setTimeout(function () {
+          mainTitle.textContent = slide.mainTitle;
+          mainTitle.classList.remove('sc-fade');
+        }, Math.round(FADE_MS * 0.4));
 
         current = index;
         updateCounter();
 
-        // Let the browser paint the new src before un-fading
-        requestAnimationFrame(function () {
-          mainImg.classList.remove('sc-fade');
-          mainTitle.classList.remove('sc-fade');
-          gridItems.forEach(function (item) {
-            var img = item.querySelector('img');
-            if (img) img.classList.remove('sc-fade');
-          });
-        });
-
-        // Unlock after the fade-in finishes
-        setTimeout(function () { animating = false; }, FADE_MS);
-      }, FADE_MS);
+        setTimeout(function () { animating = false; }, FADE_MS + 100);
+      });
     }
-
     /* ── Public navigation ── */
     function goNext() { goToSlide(current + 1); }
     function goPrev() { goToSlide(current - 1); }
