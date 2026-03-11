@@ -2286,14 +2286,14 @@
     <div class="hero-bg">
       <img src="images/hero bg.png" alt="Hero background" />
       <video
-        autoplay
         muted
         loop
         playsinline
         preload="none"
         poster="images/hero bg.png"
+        id="heroVideo"
       >
-        <source src="images/Video/HERO.mp4" type="video/mp4" />
+        <source data-src="images/Video/HERO.mp4" type="video/mp4" />
       </video>
     </div>
     <div class="hero-content">
@@ -3409,6 +3409,18 @@
       });
     });
   })();
+
+  /* ── Lazy-load hero video after page fully loads ── */
+  window.addEventListener('load', function () {
+    var video = document.getElementById('heroVideo');
+    if (!video) return;
+    var source = video.querySelector('source[data-src]');
+    if (!source) return;
+    source.src = source.getAttribute('data-src');
+    source.removeAttribute('data-src');
+    video.load();
+    video.play().catch(function () {});
+  });
 
 </script>
 
