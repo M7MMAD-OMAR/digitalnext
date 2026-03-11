@@ -344,7 +344,14 @@
     @media (max-width: 768px) {
       #hero { min-height: 90vh; }
       .hero-main { width: 100%; }
-      .hero-shape-rail { display: none; }
+      .hero-shape-rail {
+        height: 90vh;
+        padding-right: 16px;
+        gap: 16px;
+      }
+      .hero-letter {
+        width: clamp(50px, 12vw, 80px);
+      }
       .hero-content {
         min-height: 90vh;
         padding: 116px 20px 36px;
@@ -695,7 +702,7 @@
       color: rgba(255,255,255,0.85);
       font-size: 15px;
       line-height: 1.7;
-      max-width: 480px;
+      max-width: 65%;
     }
     .story-details-panel {
       cursor: pointer;
@@ -788,7 +795,7 @@
       .story-main-title { font-size: 16px; max-width: 100%; }
       .story-counter { font-size: 16px; }
       .story-details-panel { padding: 20px 18px; }
-      .story-details-desc { font-size: 12px; line-height: 1.5; }
+      .story-details-desc { font-size: 12px; line-height: 1.5; max-width: 90%; }
     }
 
     /* ===================== AWARDS ===================== */
