@@ -342,7 +342,7 @@
       .hero-sub { font-size: clamp(18px, 2.3vw, 30px); }
     }
     @media (max-width: 768px) {
-      #hero { min-height: 90vh; }
+      #hero { min-height: 90vh; margin-bottom: 48px; }
       .hero-main { width: 100%; }
       .hero-shape-rail {
         height: 90vh;
@@ -861,49 +861,19 @@
       margin-bottom: 88px;
     }
 
-    /* ── Award body: images grid + titles list ── */
+    /* ── Award body: top row (titles + featured image), bottom row (3 thumbnails) ── */
     .aw-body {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
-      align-items: start;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
     }
 
-    /* ── Images grid ── */
-    .aw-images-grid {
+    /* ── Top row: titles left + featured image right ── */
+    .aw-top {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-    .aw-img-wrap {
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      cursor: pointer;
-      position: relative;
-    }
-    .aw-img-wrap img {
-      width: 100%;
-      aspect-ratio: 4/3;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.4s ease;
-      filter: brightness(0.65);
-    }
-    .aw-img-wrap.active img {
-      transform: scale(1.08);
-      filter: brightness(1);
-    }
-    .aw-img-wrap::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border: 2px solid transparent;
-      border-radius: var(--radius-md);
-      transition: border-color 0.3s ease;
-      pointer-events: none;
-    }
-    .aw-img-wrap.active::after {
-      border-color: var(--primary-400);
+      gap: 40px;
+      align-items: center;
     }
 
     /* ── Titles list ── */
@@ -944,22 +914,103 @@
     }
     .aw-title-item.active .aw-title-item-text,
     .aw-title-item:hover .aw-title-item-text {
-      color: #fff;
+      color: var(--primary-400);
       transform: translateX(6px);
     }
     .aw-title-item:hover .aw-title-item-index {
       color: rgba(255,255,255,0.5);
     }
 
+    /* ── Featured image (single large) ── */
+    .aw-featured {
+      position: relative;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+    .aw-featured img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: block;
+      position: absolute;
+      inset: 0;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .aw-featured img.active {
+      opacity: 1;
+      position: relative;
+    }
+
+    /* ── Bottom row: 3 remaining thumbnails ── */
+    .aw-thumbs-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .aw-thumb {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+    }
+    .aw-thumb img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.4s ease;
+      filter: brightness(0.6);
+    }
+    .aw-thumb.active img {
+      transform: scale(1.05);
+      filter: brightness(1);
+    }
+    .aw-thumb::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 2px solid transparent;
+      border-radius: var(--radius-md);
+      transition: border-color 0.3s ease;
+      pointer-events: none;
+    }
+    .aw-thumb.active::after {
+      border-color: var(--primary-400);
+    }
+
+    .aw-mobile-grid { display: none; }
+
     /* ── Responsive ── */
     @media (max-width: 900px) {
       .aw-header { margin-bottom: 22px; }
       .aw-subtitle { margin-bottom: 48px; }
-      .aw-body { grid-template-columns: 1fr; gap: 32px; }
-      .aw-images-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .aw-top { grid-template-columns: 1fr; gap: 24px; }
+      .aw-thumbs-row { gap: 12px; }
     }
     @media (max-width: 600px) {
-      .aw-images-grid { gap: 10px; }
+      /* Hide featured + thumbs, show mobile grid instead */
+      .aw-featured { display: none; }
+      .aw-thumbs-row { display: none; }
+      .aw-mobile-grid { display: grid !important; grid-template-columns: 1fr 1fr; gap: 12px; }
+      .aw-mobile-grid .aw-mob-img {
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        cursor: pointer;
+      }
+      .aw-mobile-grid .aw-mob-img img {
+        width: 100%;
+        aspect-ratio: 1/1;
+        object-fit: cover;
+        display: block;
+        filter: brightness(0.6);
+        transition: transform 0.4s ease, filter 0.3s ease;
+      }
+      .aw-mobile-grid .aw-mob-img.active img {
+        transform: scale(1.05);
+        filter: brightness(1);
+      }
       .aw-title-item { padding: 16px 0; }
       .aw-title-item-text { font-size: 15px; }
     }
@@ -2438,43 +2489,57 @@
       Celebrating Our Excellence in Technology and Innovation.
     </p>
 
-    <!-- Body: images grid + titles list -->
+    <!-- Body: top (titles + featured), bottom (3 thumbs) -->
     <div class="aw-body fade-up fade-up-delay-1">
 
-      <!-- Images grid -->
-      <div class="aw-images-grid">
-        <div class="aw-img-wrap active" data-aw="0">
-          <img src="images/awards/1.png" alt="Trusted Partner Award — Finance Dept. Fujairah" loading="lazy" />
+      <!-- Top row: titles left, featured image right -->
+      <div class="aw-top">
+        <div class="aw-titles-list">
+          <div class="aw-title-item active" data-aw="0">
+            <span class="aw-title-item-index">01</span>
+            <span class="aw-title-item-text">Trusted Partner Award — Finance Dept. Fujairah</span>
+          </div>
+          <div class="aw-title-item" data-aw="1">
+            <span class="aw-title-item-index">02</span>
+            <span class="aw-title-item-text">Strategic Partner Agreement — TDRA</span>
+          </div>
+          <div class="aw-title-item" data-aw="2">
+            <span class="aw-title-item-index">03</span>
+            <span class="aw-title-item-text">Master Service Agreement — Dept. of Government Enablement</span>
+          </div>
+          <div class="aw-title-item" data-aw="3">
+            <span class="aw-title-item-index">04</span>
+            <span class="aw-title-item-text">Managed Services Agreement — Abu Dhabi Civil Defence</span>
+          </div>
         </div>
-        <div class="aw-img-wrap" data-aw="1">
+
+        <div class="aw-featured">
+          <img src="images/awards/1.png" class="active" alt="Trusted Partner Award" loading="lazy" />
+          <img src="images/awards/2.png" alt="Strategic Partner Agreement" loading="lazy" />
+          <img src="images/awards/3.png" alt="Master Service Agreement" loading="lazy" />
+          <img src="images/awards/4.png" alt="Managed Services Agreement" loading="lazy" />
+        </div>
+      </div>
+
+      <!-- Bottom row: 3 remaining thumbnails -->
+      <div class="aw-thumbs-row" id="awThumbsRow">
+        <div class="aw-thumb" data-aw="1">
           <img src="images/awards/2.png" alt="Strategic Partner Agreement — TDRA" loading="lazy" />
         </div>
-        <div class="aw-img-wrap" data-aw="2">
+        <div class="aw-thumb" data-aw="2">
           <img src="images/awards/3.png" alt="Master Service Agreement — Dept. of Government Enablement" loading="lazy" />
         </div>
-        <div class="aw-img-wrap" data-aw="3">
+        <div class="aw-thumb" data-aw="3">
           <img src="images/awards/4.png" alt="Managed Services Agreement — Abu Dhabi Civil Defence" loading="lazy" />
         </div>
       </div>
 
-      <!-- Titles list -->
-      <div class="aw-titles-list">
-        <div class="aw-title-item active" data-aw="0">
-          <span class="aw-title-item-index">01</span>
-          <span class="aw-title-item-text">Trusted Partner Award — Finance Dept. Fujairah</span>
-        </div>
-        <div class="aw-title-item" data-aw="1">
-          <span class="aw-title-item-index">02</span>
-          <span class="aw-title-item-text">Strategic Partner Agreement — TDRA</span>
-        </div>
-        <div class="aw-title-item" data-aw="2">
-          <span class="aw-title-item-index">03</span>
-          <span class="aw-title-item-text">Master Service Agreement — Dept. of Government Enablement</span>
-        </div>
-        <div class="aw-title-item" data-aw="3">
-          <span class="aw-title-item-index">04</span>
-          <span class="aw-title-item-text">Managed Services Agreement — Abu Dhabi Civil Defence</span>
-        </div>
+      <!-- Mobile: 2x2 grid (hidden on desktop) -->
+      <div class="aw-mobile-grid">
+        <div class="aw-mob-img active" data-aw="0"><img src="images/awards/1.png" alt="Trusted Partner Award" loading="lazy" /></div>
+        <div class="aw-mob-img" data-aw="1"><img src="images/awards/2.png" alt="Strategic Partner Agreement" loading="lazy" /></div>
+        <div class="aw-mob-img" data-aw="2"><img src="images/awards/3.png" alt="Master Service Agreement" loading="lazy" /></div>
+        <div class="aw-mob-img" data-aw="3"><img src="images/awards/4.png" alt="Managed Services Agreement" loading="lazy" /></div>
       </div>
 
     </div><!-- /.aw-body -->
@@ -2765,33 +2830,20 @@
     return false;
   }
 
-  // ── Awards interaction — hover (desktop) + tap (mobile) ──
+  // ── Awards interaction — highlight title on hover/click ──
   (function() {
-    var imgWraps = document.querySelectorAll('.aw-img-wrap');
     var titleItems = document.querySelectorAll('.aw-title-item');
-    if (!imgWraps.length || !titleItems.length) return;
-
-    var isTouch = 'ontouchstart' in window;
-
-    function activateAward(idx) {
-      imgWraps.forEach(function(w) { w.classList.remove('active'); });
-      titleItems.forEach(function(t) { t.classList.remove('active'); });
-      imgWraps[idx] && imgWraps[idx].classList.add('active');
-      titleItems[idx] && titleItems[idx].classList.add('active');
-    }
+    if (!titleItems.length) return;
 
     titleItems.forEach(function(item, i) {
-      if (!isTouch) {
-        item.addEventListener('mouseenter', function() { activateAward(i); });
-      }
-      item.addEventListener('click', function() { activateAward(i); });
-    });
-
-    imgWraps.forEach(function(wrap, i) {
-      if (!isTouch) {
-        wrap.addEventListener('mouseenter', function() { activateAward(i); });
-      }
-      wrap.addEventListener('click', function() { activateAward(i); });
+      item.addEventListener('mouseenter', function() {
+        titleItems.forEach(function(t) { t.classList.remove('active'); });
+        item.classList.add('active');
+      });
+      item.addEventListener('click', function() {
+        titleItems.forEach(function(t) { t.classList.remove('active'); });
+        item.classList.add('active');
+      });
     });
   })();
 
