@@ -80,6 +80,21 @@
       line-height: 1.1;
       position: relative;
     }
+    .section-title.has-shape {
+      isolation: isolate;
+    }
+    .section-title.has-shape::before {
+      content: '';
+      position: absolute;
+      left: -35px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 120px;
+      height: 120px;
+      background: url('images/icon/section-shape.svg') no-repeat center / contain;
+      z-index: -1;
+      pointer-events: none;
+    }
     .section-subtitle {
       font-size: clamp(16px, 1.6vw, 22px);
       font-weight: 400;
@@ -547,17 +562,6 @@
       position: relative;
       overflow: hidden;
     }
-    #success::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 116px;
-      height: 116px;
-      border-radius: 0 0 116px 0;
-      background: #b8b8c2;
-      pointer-events: none;
-    }
     #success .container { position: relative; z-index: 1; }
     #success .section-header-row { margin-bottom: 26px; }
     #success .section-title {
@@ -565,7 +569,7 @@
       letter-spacing: -0.5px;
     }
     #success .section-subtitle {
-      margin-top: 16px;
+      margin-top: 28px;
       max-width: 460px;
       color: #22212b;
       font-size: 16px;
@@ -2310,7 +2314,7 @@
 <section id="ai-powered" class="section-pad">
   <div class="container">
     <div class="section-header fade-up">
-      <h2 class="section-title">AI-Powered Capabilities</h2>
+      <h2 class="section-title has-shape">AI-Powered Capabilities</h2>
       <p class="section-subtitle">Our top-level team of former CXOs accumulates decades of extensive, successful, powerful experience.</p>
     </div>
     <div class="cards-grid">
@@ -2366,7 +2370,7 @@
 <section id="digital-experience">
   <div class="container">
     <div class="section-header fade-up">
-      <h2 class="section-title">AI-Powered Digital Experience</h2>
+      <h2 class="section-title has-shape">AI-Powered Digital Experience</h2>
     </div>
 
     <div class="dexp-grid fade-up">
@@ -2422,7 +2426,7 @@
   <div class="container">
     <div class="section-header-row fade-up">
       <div>
-        <h2 class="section-title">Our Success Stories</h2>
+        <h2 class="section-title has-shape">Our Success Stories</h2>
         <p class="section-subtitle">Real stories from clients we supported with digital transformation and AI-powered solutions.</p>
       </div>
     </div>
