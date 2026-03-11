@@ -594,6 +594,7 @@
       grid-template-columns: 1.1fr 1fr;
       gap: 16px;
       height: 520px;
+      max-width: 100%;
     }
     .story-main {
       position: relative;
@@ -781,8 +782,8 @@
         height: 84px;
         border-radius: 0 0 84px 0;
       }
-      .stories-layout { grid-template-columns: 1fr; height: auto; }
-      .story-main { border-radius: 18px; height: auto; aspect-ratio: 16 / 9; }
+      .stories-layout { grid-template-columns: 1fr; height: auto; overflow: hidden; }
+      .story-main { border-radius: 18px; height: auto; aspect-ratio: 16 / 9; max-width: 100%; }
       .story-grid { height: auto; }
       .story-grid-item { aspect-ratio: 1 / 1; }
       .story-grid-item,
