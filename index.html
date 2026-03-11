@@ -613,7 +613,7 @@
     }
     .story-main-overlay {
       position: absolute;
-      z-index: 2;
+      z-index: 4;
       bottom: 0;
       left: 0;
       right: 0;
@@ -671,7 +671,10 @@
     .story-details-panel {
       position: absolute;
       z-index: 3;
-      inset: 0;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 100px;
       background: linear-gradient(135deg, rgba(10,10,20,0.92) 0%, rgba(20,15,40,0.95) 100%);
       -webkit-backdrop-filter: blur(16px);
       backdrop-filter: blur(16px);
@@ -701,31 +704,33 @@
       line-height: 1.7;
       max-width: 480px;
     }
-    .story-details-close {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      border: 1.5px solid rgba(255,255,255,0.4);
-      background: rgba(255,255,255,0.1);
+    .story-details-panel {
+      cursor: pointer;
+    }
+    .story-details-close-btn {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
+      gap: 8px;
+      margin-top: 24px;
+      padding: 10px 22px;
+      border-radius: 24px;
+      border: 1.5px solid rgba(255,255,255,0.35);
+      background: rgba(255,255,255,0.1);
       color: #fff;
+      font-size: 14px;
+      font-weight: 500;
       cursor: pointer;
       transition: all 0.3s ease;
       -webkit-backdrop-filter: blur(4px);
       backdrop-filter: blur(4px);
     }
-    .story-details-close:hover {
-      background: rgba(255,255,255,0.25);
-      border-color: rgba(255,255,255,0.8);
+    .story-details-close-btn:hover {
+      background: rgba(255,255,255,0.22);
+      border-color: rgba(255,255,255,0.7);
     }
-    .story-details-close svg {
-      width: 16px;
-      height: 16px;
+    .story-details-close-btn svg {
+      width: 14px;
+      height: 14px;
       stroke: currentColor;
       stroke-width: 2;
       fill: none;
@@ -819,7 +824,7 @@
       }
       .story-main-title { font-size: 16px; max-width: 100%; }
       .story-counter { font-size: 16px; }
-      .story-details-panel { padding: 28px 22px; }
+      .story-details-panel { padding: 28px 22px; bottom: 90px; }
       .story-details-title { font-size: 18px; }
       .story-details-desc { font-size: 14px; line-height: 1.6; }
     }
@@ -2408,11 +2413,12 @@
       <div class="story-main">
         <img src="images/success-1/main.png" alt="Abu Dhabi Government" />
         <div class="story-details-panel" id="storyDetailsPanel">
-          <button class="story-details-close" id="storyDetailsClose" aria-label="Close details">
-            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8"/></svg>
-          </button>
           <h3 class="story-details-title" id="storyDetailsTitle">Abu Dhabi Government Services Digital Platform</h3>
           <p class="story-details-desc" id="storyDetailsDesc"></p>
+          <button class="story-details-close-btn" id="storyDetailsClose" aria-label="Close details">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8"/></svg>
+            Close
+          </button>
         </div>
         <div class="story-main-overlay">
           <div class="story-title-row">
@@ -3155,7 +3161,14 @@
       });
     }
     if (detailsClose) {
-      detailsClose.addEventListener('click', function () {
+      detailsClose.addEventListener('click', function (e) {
+        e.stopPropagation();
+        closeDetails();
+      });
+    }
+    // Click anywhere on the panel also closes it
+    if (detailsPanel) {
+      detailsPanel.addEventListener('click', function () {
         closeDetails();
       });
     }
