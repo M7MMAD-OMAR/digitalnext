@@ -68,14 +68,14 @@
     button { font-family: var(--font); cursor: pointer; border: none; background: none; }
 
     /* ===== UTILITY ===== */
-    .container { max-width: 1400px; margin: 0 auto; padding: 0 52px; }
+    .container { width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 52px; }
     .section-pad { padding: 100px 0; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
     @media (max-width: 1024px) { .container { padding: 0 32px; } .section-pad { padding: 72px 0; } }
     @media (max-width: 768px)  { .container { padding: 0 20px; } .section-pad { padding: 56px 0; } }
 
     /* ===== SECTION TITLE ===== */
     .section-title {
-      font-size: clamp(28px, 4vw, 50px);
+      font-size: clamp(30px, 4.5vw, 58px);
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: -0.5px;
@@ -83,7 +83,7 @@
       position: relative;
     }
     .section-subtitle {
-      font-size: clamp(16px, 1.5vw, 20px);
+      font-size: clamp(16px, 1.6vw, 22px);
       font-weight: 400;
       line-height: 1.6;
       color: var(--text-fg);
@@ -303,14 +303,14 @@
       gap: 12px;
     }
     .hero-title {
-      font-size: clamp(48px, 5.8vw, 55px);
+      font-size: clamp(48px, 6.5vw, 72px);
       font-weight: 600;
       line-height: 1;
       letter-spacing: -0.7px;
       color: var(--text-fg);
     }
     .hero-sub {
-      font-size: clamp(22px, 2.9vw, 37px);
+      font-size: clamp(22px, 3.2vw, 42px);
       font-weight: 400;
       line-height: 1.25;
       color: #60616e;
@@ -459,7 +459,7 @@
     }
     #digital-experience .section-header { margin-bottom: 48px; }
     #digital-experience .section-title {
-      font-size: clamp(28px, 4vw, 50px);
+      font-size: clamp(30px, 4.5vw, 58px);
       letter-spacing: -0.5px;
       line-height: 1.1;
     }
@@ -596,7 +596,7 @@
     #success .container { position: relative; z-index: 1; }
     #success .section-header-row { margin-bottom: 26px; }
     #success .section-title {
-      font-size: clamp(28px, 4vw, 50px);
+      font-size: clamp(30px, 4.5vw, 58px);
       letter-spacing: -0.5px;
     }
     #success .section-subtitle {
@@ -774,7 +774,7 @@
       flex-wrap: wrap;
     }
     .aw-header h2 {
-      font-size: clamp(28px, 4vw, 50px);
+      font-size: clamp(30px, 4.5vw, 58px);
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: -0.5px;
@@ -799,78 +799,51 @@
       margin-bottom: 88px;
     }
 
-    /* ── 2-col body ── */
+    /* ── Award body ── */
     .aw-body {
-      display: grid;
-      grid-template-columns: 260px 1fr;
-      gap: 0 52px;
-      align-items: start;
-      position: relative;   /* anchor for absolute trophy */
+      position: relative;
     }
 
-    /* ── Left: trophy column — holds vertical space, image moves freely ── */
-    .aw-trophy-col {
-      /* Just a spacer column — actual image is positioned absolutely */
-      pointer-events: none;
-      visibility: hidden;   /* hide the placeholder, image is absolute */
-      height: 220px;        /* reserve initial space */
-    }
-
-    /* ── Floating trophy that tracks the active row ── */
-    .aw-trophy-wrap {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 220px; height: 220px;
-      transform: translateY(0px);
-      /* smooth spring-like vertical tracking */
-      transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-      z-index: 2;
-      pointer-events: none;
-    }
-
-    /* Year label */
-    .aw-trophy-year {
-      position: absolute; top: 14px; left: 14px; z-index: 3;
-      font-size: 22px; font-weight: 700;
-      color: rgba(255,255,255,0.6);
-      letter-spacing: 1px;
-      transition: opacity 0.3s;
-    }
-
-    /* All trophy images stacked — crossfade on switch */
-    .aw-trophy-img {
-      position: absolute; inset: 0;
-      border-radius: 50%;
-      overflow: hidden;
-      opacity: 0;
-      transform: scale(0.88) rotate(-6deg);
-      transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.34,1.4,0.64,1);
-    }
-    .aw-trophy-img.active {
-      opacity: 1;
-      transform: scale(1) rotate(0deg);
-    }
-    .aw-trophy-img img {
-      width: 100%; height: 100%; object-fit: cover;
-    }
-    /* Gradient fallback */
-    .aw-trophy-img-fallback {
-      width: 100%; height: 100%; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .aw-trophy-img-fallback svg { width: 80px; height: 80px; opacity: 0.4; }
-
-    /* ── Right: award rows list ── */
+    /* ── Award rows list ── */
     .aw-list { width: 100%; }
+
+    /* ── Gallery strip (slides open under active row) ── */
+    .aw-row-gallery {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .aw-row.active .aw-row-gallery {
+      grid-template-rows: 1fr;
+    }
+    .aw-gallery-inner {
+      overflow: hidden;
+      min-height: 0;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      opacity: 0;
+      transition: opacity 0.4s ease 0.15s;
+    }
+    .aw-row.active .aw-gallery-inner {
+      padding-top: 16px;
+      opacity: 1;
+    }
+    .aw-gallery-inner img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: var(--radius-md);
+    }
 
     .aw-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 24px;
+      gap: 0 24px;
       padding: 28px 0;
       border-bottom: 1px solid rgba(255,255,255,0.1);
-      cursor: default;
+      cursor: pointer;
       position: relative;
     }
     .aw-row:first-child { border-top: 1px solid rgba(255,255,255,0.1); }
@@ -927,14 +900,8 @@
     @media (max-width: 900px) {
       .aw-header { margin-bottom: 22px; }
       .aw-subtitle { margin-bottom: 64px; }
-      .aw-body { grid-template-columns: 1fr; }
-      .aw-trophy-col { display: none; }
-      .aw-trophy-wrap {
-        position: relative;
-        left: auto; top: auto;
-        transform: none !important;
-        margin: 0 auto 40px;
-        transition: none;
+      .aw-gallery-inner {
+        grid-template-columns: repeat(2, 1fr);
       }
     }
     @media (max-width: 600px) {
@@ -960,7 +927,7 @@
       object-fit: contain;
     }
     .tp-title-wrap h2 {
-      font-size: clamp(28px, 4vw, 50px);
+      font-size: clamp(30px, 4.5vw, 58px);
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: -0.7px;
@@ -1100,7 +1067,7 @@
       margin-bottom: 64px;
     }
     .research-header h2 {
-      font-size: clamp(28px, 4vw, 50px);
+      font-size: clamp(30px, 4.5vw, 58px);
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: -0.5px;
@@ -1320,7 +1287,7 @@
       margin: 0;
       padding: 0;
       color: #ffffff;
-      font-size: clamp(28px, 4vw, 50px);
+      font-size: clamp(30px, 4.5vw, 58px);
       font-weight: 700;
       letter-spacing: -0.5px;
       line-height: 1.1;
@@ -1523,7 +1490,7 @@
       width: fit-content;
     }
     .invite-text h2 {
-      font-size: clamp(24px, 2.8vw, 40px);
+      font-size: clamp(26px, 3.2vw, 46px);
       font-weight: 700;
       color: #fff;
       line-height: 1.2;
@@ -1794,7 +1761,6 @@
       #awards { padding: 64px 0 56px; min-height: auto; }
       .aw-header h2 { font-size: clamp(24px, 7vw, 36px); }
       .aw-subtitle { margin-bottom: 40px; font-size: 14px; }
-      .aw-trophy-wrap { width: 180px; height: 180px; }
       .aw-row-title { font-size: 16px; }
       .aw-row-desc { font-size: 13px; }
 
@@ -2198,9 +2164,9 @@
     <div class="navbar-links" id="navLinks">
       <a href="#hero" class="active">Home</a>
       <a href="#ai-powered">Services</a>
+      <a href="#digital-experience">About</a>
+      <a href="#success">Success Stories</a>
       <a href="#awards">Awards</a>
-      <a href="#research">Research</a>
-      <a href="#digital-experience">About Us</a>
       <a href="#contact">Contact Us</a>
     </div>
   </div>
@@ -2224,8 +2190,8 @@
     </div>
     <div class="hero-content">
       <div class="hero-title-block">
-        <h1 class="hero-title fade-up">Transformation, Optimization<br>And Consultation.</h1>
-        <p class="hero-sub fade-up fade-up-delay-1">For Businesses, Organizations,<br>and Individuals.</p>
+        <h1 class="hero-title fade-up">Your Trusted Partner</h1>
+        <p class="hero-sub fade-up fade-up-delay-1">Transformation, Optimization<br>And Consultation.</p>
         <div class="hero-cta-wrap fade-up fade-up-delay-2">
           <a href="#contact" class="hero-circle-btn" aria-label="Go to Get in Touch section">
             <svg class="circle-text-svg" viewBox="0 0 160 160" fill="none" aria-hidden="true">
@@ -2371,7 +2337,7 @@
     <div class="section-header-row fade-up">
       <div>
         <h2 class="section-title">Our Success Stories</h2>
-        <p class="section-subtitle">Real stories from clients we supported with digital transformation, LCNC, and AI-powered solutions.</p>
+        <p class="section-subtitle">Real stories from clients we supported with digital transformation and AI-powered solutions.</p>
       </div>
     </div>
     <div class="stories-layout fade-up">
@@ -2428,109 +2394,60 @@
       Celebrating Our Excellence in Technology and Innovation.
     </p>
 
-    <!-- Body: floating trophy + spacer col left, list right -->
+    <!-- Body: award rows with expandable gallery strips -->
     <div class="aw-body">
-
-      <!-- Spacer column (keeps grid structure, trophy floats over it absolutely) -->
-      <div class="aw-trophy-col" aria-hidden="true"></div>
-
-      <!-- FLOATING trophy image — absolute inside .aw-body, JS moves it via translateY -->
-      <div class="aw-trophy-wrap" id="awTrophyWrap" aria-hidden="true">
-        <div class="aw-trophy-year" id="aw-year">2025</div>
-
-          <!-- Image 0 — UAE Innovation Award (default/active) -->
-          <div class="aw-trophy-img active" data-idx="0">
-            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80"
-                 alt="UAE Innovation Award trophy"
-                 onerror="this.parentElement.querySelector('.aw-trophy-img-fallback').style.display='flex'; this.style.display='none';" />
-            <div class="aw-trophy-img-fallback" style="display:none; background:linear-gradient(135deg,#390206,#520308);">
-              <svg viewBox="0 0 80 80" fill="none"><circle cx="40" cy="30" r="18" stroke="rgba(255,200,100,0.6)" stroke-width="2"/><path d="M28 48h24M34 54h12M40 48v6" stroke="rgba(255,200,100,0.6)" stroke-width="2"/></svg>
-            </div>
-          </div>
-
-          <!-- Image 1 — Best Enterprise Solution -->
-          <div class="aw-trophy-img" data-idx="1">
-            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80"
-                 alt="Best Enterprise Solution trophy"
-                 onerror="this.parentElement.querySelector('.aw-trophy-img-fallback').style.display='flex'; this.style.display='none';" />
-            <div class="aw-trophy-img-fallback" style="display:none; background:linear-gradient(135deg,#161428,#211E3B);">
-              <svg viewBox="0 0 80 80" fill="none"><circle cx="40" cy="30" r="18" stroke="rgba(174,45,54,0.7)" stroke-width="2"/><path d="M28 48h24M34 54h12M40 48v6" stroke="rgba(174,45,54,0.7)" stroke-width="2"/></svg>
-            </div>
-          </div>
-
-          <!-- Image 2 — AI Excellence -->
-          <div class="aw-trophy-img" data-idx="2">
-            <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&q=80"
-                 alt="AI Excellence Award trophy"
-                 onerror="this.parentElement.querySelector('.aw-trophy-img-fallback').style.display='flex'; this.style.display='none';" />
-            <div class="aw-trophy-img-fallback" style="display:none; background:linear-gradient(135deg,#520308,#85040D);">
-              <svg viewBox="0 0 80 80" fill="none"><circle cx="40" cy="30" r="18" stroke="rgba(255,200,100,0.5)" stroke-width="2"/><path d="M28 48h24M34 54h12M40 48v6" stroke="rgba(255,200,100,0.5)" stroke-width="2"/></svg>
-            </div>
-          </div>
-
-          <!-- Image 3 — Top Digital Transformation Leader -->
-          <div class="aw-trophy-img" data-idx="3">
-            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80"
-                 alt="Top Digital Transformation Leader trophy"
-                 onerror="this.parentElement.querySelector('.aw-trophy-img-fallback').style.display='flex'; this.style.display='none';" />
-            <div class="aw-trophy-img-fallback" style="display:none; background:linear-gradient(135deg,#0C0B15,#161428);">
-              <svg viewBox="0 0 80 80" fill="none"><circle cx="40" cy="30" r="18" stroke="rgba(193,192,200,0.5)" stroke-width="2"/><path d="M28 48h24M34 54h12M40 48v6" stroke="rgba(193,192,200,0.5)" stroke-width="2"/></svg>
-            </div>
-          </div>
-
-          <!-- Image 4 — Innovation in Workflow -->
-          <div class="aw-trophy-img" data-idx="4">
-            <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?w=800&q=80"
-                 alt="Innovation in Workflow Automation trophy"
-                 onerror="this.parentElement.querySelector('.aw-trophy-img-fallback').style.display='flex'; this.style.display='none';" />
-            <div class="aw-trophy-img-fallback" style="display:none; background:linear-gradient(135deg,#390206,#6B030B);">
-              <svg viewBox="0 0 80 80" fill="none"><circle cx="40" cy="30" r="18" stroke="rgba(205,125,131,0.6)" stroke-width="2"/><path d="M28 48h24M34 54h12M40 48v6" stroke="rgba(205,125,131,0.6)" stroke-width="2"/></svg>
-            </div>
-          </div>
-
-          <!-- Image 5 — Excellence in Client Impact -->
-          <div class="aw-trophy-img" data-idx="5">
-            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80"
-                 alt="Excellence in Client Impact trophy"
-                 onerror="this.parentElement.querySelector('.aw-trophy-img-fallback').style.display='flex'; this.style.display='none';" />
-            <div class="aw-trophy-img-fallback" style="display:none; background:linear-gradient(135deg,#11101F,#1C1932);">
-              <svg viewBox="0 0 80 80" fill="none"><circle cx="40" cy="30" r="18" stroke="rgba(174,45,54,0.5)" stroke-width="2"/><path d="M28 48h24M34 54h12M40 48v6" stroke="rgba(174,45,54,0.5)" stroke-width="2"/></svg>
-            </div>
-          </div>
-
-      </div><!-- /.aw-trophy-wrap -->
-
-      <!-- RIGHT: award rows -->
       <div class="aw-list fade-up fade-up-delay-1">
 
-        <div class="aw-row active" data-idx="0" data-year="2025">
+        <div class="aw-row active" data-idx="0">
           <div class="aw-row-title">UAE Innovation Award</div>
           <div class="aw-row-desc">Celebrating Our Excellence in Technology and Innovation.</div>
+          <div class="aw-row-gallery">
+            <div class="aw-gallery-inner">
+              <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80" alt="Innovation tech conference" loading="lazy" />
+              <img src="https://images.unsplash.com/photo-1531545514256-b1400bc00f31?w=600&q=80" alt="Award celebration ceremony" loading="lazy" />
+              <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&q=80" alt="Technology and data innovation" loading="lazy" />
+              <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&q=80" alt="UAE modern cityscape" loading="lazy" />
+            </div>
+          </div>
         </div>
 
-        <div class="aw-row" data-idx="1" data-year="2025">
+        <div class="aw-row" data-idx="1">
           <div class="aw-row-title">Best Enterprise Solution 2025</div>
           <div class="aw-row-desc">Shamel: The Unified Platform of DANS (Dubai Air Navigation Services)</div>
+          <div class="aw-row-gallery">
+            <div class="aw-gallery-inner">
+              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80" alt="Enterprise data analytics dashboard" loading="lazy" />
+              <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80" alt="Team collaboration on enterprise solution" loading="lazy" />
+              <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80" alt="Modern corporate office" loading="lazy" />
+              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80" alt="Business analytics platform" loading="lazy" />
+            </div>
+          </div>
         </div>
 
-        <div class="aw-row" data-idx="2" data-year="2024">
+        <div class="aw-row" data-idx="2">
           <div class="aw-row-title">AI Excellence Award</div>
           <div class="aw-row-desc">Delivers tailored interactions and user experiences.</div>
+          <div class="aw-row-gallery">
+            <div class="aw-gallery-inner">
+              <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&q=80" alt="AI artificial intelligence visualization" loading="lazy" />
+              <img src="https://images.unsplash.com/photo-1555255707-c07966088b7b?w=600&q=80" alt="Neural network machine learning" loading="lazy" />
+              <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&q=80" alt="AI robotics technology" loading="lazy" />
+              <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&q=80" alt="Tech workspace and innovation" loading="lazy" />
+            </div>
+          </div>
         </div>
 
-        <div class="aw-row" data-idx="3" data-year="2024">
+        <div class="aw-row" data-idx="3">
           <div class="aw-row-title">Top Digital Transformation Leader</div>
           <div class="aw-row-desc">We measure, plot, and link the findings to a 4Ps diagram.</div>
-        </div>
-
-        <div class="aw-row" data-idx="4" data-year="2023">
-          <div class="aw-row-title">Innovation in Workflow Automation</div>
-          <div class="aw-row-desc">Celebrating Our Excellence in Technology and Innovation.</div>
-        </div>
-
-        <div class="aw-row" data-idx="5" data-year="2023">
-          <div class="aw-row-title">Excellence in Client Impact</div>
-          <div class="aw-row-desc">Delivers tailored interactions and user experiences.</div>
+          <div class="aw-row-gallery">
+            <div class="aw-gallery-inner">
+              <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&q=80" alt="Digital strategy meeting" loading="lazy" />
+              <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&q=80" alt="Modern technology transformation" loading="lazy" />
+              <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80" alt="Business leadership presentation" loading="lazy" />
+              <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=80" alt="Digital circuit technology" loading="lazy" />
+            </div>
+          </div>
         </div>
 
       </div><!-- /.aw-list -->
@@ -2595,7 +2512,7 @@
         <img src="images/Karim Al-Samir.png" alt="Karim Al-Samir" class="team-image">
         <div class="team-info">
           <h3 class="team-name">Karim Al-Samir</h3>
-          <p class="team-role">LCNC Developer</p>
+          <p class="team-role">Developer</p>
         </div>
       </article>
 
@@ -2671,7 +2588,7 @@
     <div class="invite-text fade-up">
       <span class="invite-badge">Invite Our Experts</span>
       <h2>Invite Digital Next<br>to Your Event</h2>
-      <p>Expert speakers in Digital Transformation, LCNC, and AI ready to inspire your audience.</p>
+      <p>Expert speakers in Digital Transformation and AI ready to inspire your audience.</p>
     </div>
 
     <!-- RIGHT: form -->
@@ -2741,7 +2658,7 @@
         <li><a href="#digital-experience">About Us</a></li>
         <li><a href="#awards">Awards</a></li>
         <li><a href="#success">Success Stories</a></li>
-        <li><a href="#research">Research</a></li>
+        <li><a href="#partnerships">Partnerships</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
@@ -2825,64 +2742,20 @@
     setTimeout(() => { success.style.display = 'none'; }, 4000);
   }
 
-  // ── Awards hover interaction — trophy tracks active row ──
+  // ── Awards hover interaction — toggle active row gallery ──
   (function() {
-    const rows      = document.querySelectorAll('.aw-row');
-    const trophies  = document.querySelectorAll('.aw-trophy-img');
-    const trophy    = document.getElementById('awTrophyWrap');
-    const yearEl    = document.getElementById('aw-year');
-    const body      = document.querySelector('.aw-body');
-    if (!rows.length || !trophy || !body) return;
+    const rows = document.querySelectorAll('.aw-row');
+    if (!rows.length) return;
 
-    const TROPHY_H = 220; // matches CSS height
-
-    function moveTrophy(row, idx, year) {
-      // Position of the row's top edge relative to .aw-body
-      const bodyTop = body.getBoundingClientRect().top;
-      const rowTop  = row.getBoundingClientRect().top;
-      const rowH    = row.getBoundingClientRect().height;
-
-      // Center the trophy vertically on the row
-      const offset = (rowTop - bodyTop) + (rowH / 2) - (TROPHY_H / 2);
-      trophy.style.transform = `translateY(${offset}px)`;
-
-      // Swap image
-      trophies.forEach(t => t.classList.remove('active'));
-      const target = trophy.querySelector(`.aw-trophy-img[data-idx="${idx}"]`);
-      if (target) target.classList.add('active');
-
-      // Update year
-      if (yearEl && year) yearEl.textContent = year;
-
-      // Update active row style
-      rows.forEach(r => r.classList.remove('active'));
-      row.classList.add('active');
-    }
-
-    // Init — align with first row on load
-    function initTrophy() {
-      moveTrophy(rows[0], 0, rows[0].dataset.year);
-    }
-
-    // Run after layout is ready
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initTrophy);
-    } else {
-      // slight delay to ensure layout is fully painted
-      setTimeout(initTrophy, 50);
-    }
-
-    rows.forEach((row, i) => {
-      row.addEventListener('mouseenter', () => moveTrophy(row, i, row.dataset.year));
-      row.addEventListener('click',      () => moveTrophy(row, i, row.dataset.year));
-    });
-
-    // Re-align on resize (rows shift position)
-    window.addEventListener('resize', () => {
-      const activeRow = document.querySelector('.aw-row.active') || rows[0];
-      const idx  = parseInt(activeRow.dataset.idx);
-      const year = activeRow.dataset.year;
-      moveTrophy(activeRow, idx, year);
+    rows.forEach(function(row) {
+      row.addEventListener('mouseenter', function() {
+        rows.forEach(function(r) { r.classList.remove('active'); });
+        row.classList.add('active');
+      });
+      row.addEventListener('click', function() {
+        rows.forEach(function(r) { r.classList.remove('active'); });
+        row.classList.add('active');
+      });
     });
   })();
 
