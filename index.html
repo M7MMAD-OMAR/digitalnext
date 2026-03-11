@@ -816,42 +816,46 @@
       border-bottom: 1px solid rgba(255,255,255,0.1);
       cursor: pointer;
       position: relative;
-      z-index: 1;
-    }
-    .aw-row.active {
-      z-index: 2;
     }
 
-    /* ── Gallery overlay (no layout shift) ── */
+    /* ── Gallery strip (in-flow, smooth open/close) ── */
     .aw-row-gallery {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      opacity: 0;
-      transform: translateY(-6px);
-      pointer-events: none;
-      transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-      z-index: 10;
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
     .aw-row.active .aw-row-gallery {
-      opacity: 1;
-      transform: translateY(0);
+      grid-template-rows: 1fr;
     }
     .aw-gallery-inner {
+      overflow: hidden;
+      min-height: 0;
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 8px;
-      padding: 16px 0 20px;
-      background: var(--blue-600);
-      border-radius: 0 0 var(--radius-md) var(--radius-md);
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      padding-top: 0;
+      transition: padding 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    .aw-row.active .aw-gallery-inner {
+      padding-top: 18px;
     }
     .aw-gallery-inner img {
       width: 100%;
       aspect-ratio: 4/3;
       object-fit: cover;
       border-radius: var(--radius-md);
+      opacity: 0;
+      transform: scale(0.96);
+      transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
+    .aw-row.active .aw-gallery-inner img {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .aw-row.active .aw-gallery-inner img:nth-child(1) { transition-delay: 0.08s; }
+    .aw-row.active .aw-gallery-inner img:nth-child(2) { transition-delay: 0.16s; }
+    .aw-row.active .aw-gallery-inner img:nth-child(3) { transition-delay: 0.24s; }
     .aw-row:first-child { border-top: 1px solid rgba(255,255,255,0.1); }
 
     /* Title */
@@ -906,9 +910,6 @@
     @media (max-width: 900px) {
       .aw-header { margin-bottom: 22px; }
       .aw-subtitle { margin-bottom: 64px; }
-      .aw-gallery-inner {
-        grid-template-columns: repeat(2, 1fr);
-      }
     }
     @media (max-width: 600px) {
       .aw-row { grid-template-columns: 1fr; gap: 8px; }
@@ -2412,7 +2413,6 @@
               <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80" alt="Innovation tech conference" loading="lazy" />
               <img src="https://images.unsplash.com/photo-1531545514256-b1400bc00f31?w=600&q=80" alt="Award celebration ceremony" loading="lazy" />
               <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&q=80" alt="Technology and data innovation" loading="lazy" />
-              <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&q=80" alt="UAE modern cityscape" loading="lazy" />
             </div>
           </div>
         </div>
@@ -2425,7 +2425,6 @@
               <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80" alt="Enterprise data analytics dashboard" loading="lazy" />
               <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80" alt="Team collaboration on enterprise solution" loading="lazy" />
               <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80" alt="Modern corporate office" loading="lazy" />
-              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80" alt="Business analytics platform" loading="lazy" />
             </div>
           </div>
         </div>
@@ -2438,7 +2437,6 @@
               <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&q=80" alt="AI artificial intelligence visualization" loading="lazy" />
               <img src="https://images.unsplash.com/photo-1555255707-c07966088b7b?w=600&q=80" alt="Neural network machine learning" loading="lazy" />
               <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&q=80" alt="AI robotics technology" loading="lazy" />
-              <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&q=80" alt="Tech workspace and innovation" loading="lazy" />
             </div>
           </div>
         </div>
@@ -2451,7 +2449,6 @@
               <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&q=80" alt="Digital strategy meeting" loading="lazy" />
               <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&q=80" alt="Modern technology transformation" loading="lazy" />
               <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80" alt="Business leadership presentation" loading="lazy" />
-              <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=80" alt="Digital circuit technology" loading="lazy" />
             </div>
           </div>
         </div>
@@ -2748,20 +2745,26 @@
     setTimeout(() => { success.style.display = 'none'; }, 4000);
   }
 
-  // ── Awards hover interaction — toggle active row gallery ──
+  // ── Awards interaction — hover (desktop) + tap (mobile) ──
   (function() {
-    const rows = document.querySelectorAll('.aw-row');
+    var rows = document.querySelectorAll('.aw-row');
     if (!rows.length) return;
 
+    var isTouch = 'ontouchstart' in window;
+
+    function activate(row) {
+      if (row.classList.contains('active')) return;
+      rows.forEach(function(r) { r.classList.remove('active'); });
+      row.classList.add('active');
+    }
+
     rows.forEach(function(row) {
-      row.addEventListener('mouseenter', function() {
-        rows.forEach(function(r) { r.classList.remove('active'); });
-        row.classList.add('active');
-      });
-      row.addEventListener('click', function() {
-        rows.forEach(function(r) { r.classList.remove('active'); });
-        row.classList.add('active');
-      });
+      // Desktop: hover
+      if (!isTouch) {
+        row.addEventListener('mouseenter', function() { activate(row); });
+      }
+      // Mobile + Desktop fallback: tap/click
+      row.addEventListener('click', function() { activate(row); });
     });
   })();
 
