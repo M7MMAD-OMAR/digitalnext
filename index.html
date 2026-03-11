@@ -69,7 +69,7 @@
     .container { width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 52px; }
     .section-pad { padding: 100px 0; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
     @media (max-width: 1024px) { .container { padding: 0 32px; } .section-pad { padding: 72px 0; } }
-    @media (max-width: 768px)  { .container { padding: 0 20px; } .section-pad { padding: 56px 0; } }
+    @media (max-width: 768px)  { .container { padding: 0 20px; } .section-pad { padding: 60px 0; min-height: 100vh; } }
 
     /* ===== SECTION TITLE ===== */
     .section-title {
@@ -1798,7 +1798,7 @@
 
       /* ── Global ── */
       .container { padding: 0 16px; }
-      .section-pad { padding: 48px 0; min-height: auto; }
+      .section-pad { padding: 60px 0; min-height: 100vh; }
 
       /* ── Navbar ── */
       .navbar { top: 8px; padding: 0 10px; }
@@ -1806,9 +1806,9 @@
       .navbar-logo-text { font-size: 17px; }
 
       /* ── Hero ── */
-      #hero { min-height: 85vh; }
+      #hero { min-height: 100vh; }
       .hero-content {
-        min-height: 85vh;
+        min-height: 100vh;
         padding: 100px 16px 28px;
       }
       .hero-title { font-size: clamp(30px, 9vw, 42px); }
@@ -1827,19 +1827,19 @@
       .story-grid-item { min-height: 140px; }
 
       /* ── Awards ── */
-      #awards { padding: 64px 0 56px; min-height: auto; }
+      #awards { padding: 64px 0 56px; min-height: 100vh; }
       .aw-header h2 { font-size: clamp(24px, 7vw, 36px); }
       .aw-subtitle { margin-bottom: 40px; font-size: 14px; }
       .aw-row-title { font-size: 16px; }
       .aw-row-desc { font-size: 13px; }
 
       /* ── Partnerships ── */
-      #partnerships { padding: 64px 0 56px; }
+      #partnerships { padding: 64px 0 56px; min-height: 100vh; }
       .tp-title-wrap h2 { font-size: 28px; }
       .tp-title-wrap { margin-bottom: 28px; }
 
       /* ── Research & Case Studies ── */
-      #research { min-height: auto; }
+      #research { min-height: 100vh; }
       .research-header { margin-bottom: 28px; }
       .research-header h2 { font-size: clamp(24px, 7vw, 36px); }
       .research-text { display: none; }
@@ -1852,7 +1852,7 @@
       /* ── Meet Our Team ── */
       .meet-team-section {
         padding: 56px 12px 60px;
-        min-height: auto;
+        min-height: 100vh;
         overflow: hidden;
       }
       .meet-team-section .team-container { padding: 0 8px; }
@@ -1896,7 +1896,7 @@
       .git-card-btn { padding: 10px 22px; font-size: 13px; }
 
       /* ── Invite / Contact ── */
-      .invite-section { padding-top: 100px; min-height: auto; }
+      .invite-section { padding-top: 100px; min-height: 100vh; }
       .invite-inner {
         padding: 40px 16px;
         grid-template-columns: 1fr;
