@@ -41,8 +41,6 @@
       --header-bottom-pad: 20px;
       --header-title-max: 850px;
       --header-side-pad: 36px;
-    --hero-circle-right: clamp(220px, 20vw, 320px);
-      --hero-circle-bottom: clamp(20px, 4.5vh, 52px);
 
       /* ===== UNIFIED DESIGN TOKENS ===== */
       --radius-sm: 2px;       /* buttons, badges, small chips */
@@ -190,7 +188,6 @@
       :root {
         --header-nav-width: 730px;
         --header-side-pad: 30px;
-      --hero-circle-right: clamp(170px, 15vw, 240px);
       }
       .navbar-links { gap: 18px; }
       .navbar-links a { font-size: 15px; }
@@ -219,7 +216,7 @@
         background: rgba(255,255,255,0.97);
         -webkit-backdrop-filter: blur(12px);
         backdrop-filter: blur(12px);
-        padding: 8px;
+        padding: 12px 16px;
         border-radius: var(--radius-md);
         border: 1px solid rgba(0,0,0,0.06);
         box-shadow: 0 12px 32px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.06);
@@ -237,7 +234,7 @@
         visibility: visible;
       }
       .navbar-links a {
-        padding: 12px 16px;
+        padding: 12px 20px;
         width: 100%;
         border-radius: 4px;
         font-size: 15px;
@@ -338,68 +335,6 @@
       line-height: 1.25;
       color: #60616e;
     }
-    .hero-cta-wrap {
-      position: absolute;
-      right: var(--hero-circle-right);
-      bottom: var(--hero-circle-bottom);
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-    }
-    .hero-circle-btn {
-      position: relative;
-      width: 160px;
-      height: 160px;
-      flex-shrink: 0;
-      cursor: pointer;
-      text-decoration: none;
-      display: block;
-    }
-    .hero-circle-btn::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 50%;
-      background: var(--primary-600);
-      transition: background 0.25s, transform 0.25s;
-    }
-    .hero-circle-btn:hover::before {
-      background: var(--primary-700);
-      transform: scale(1.04);
-    }
-    .hero-circle-btn .circle-text-svg {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      animation: spin 10s linear infinite;
-    }
-    @keyframes spin {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
-    }
-    .hero-circle-inner {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 56px;
-      height: 56px;
-      background: rgba(255,255,255,0.15);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.25s;
-    }
-    .hero-circle-btn:hover .hero-circle-inner { background: rgba(255,255,255,0.25); }
-    .hero-circle-inner svg {
-      width: 22px;
-      height: 22px;
-      color: #fff;
-      transition: transform 0.25s;
-    }
-    .hero-circle-btn:hover .hero-circle-inner svg { transform: translate(3px, -3px); }
 
     @media (max-width: 1024px) {
       .hero-content { padding-left: 32px; padding-right: 32px; }
@@ -421,13 +356,6 @@
       .hero-sub {
         font-size: clamp(18px, 5vw, 26px);
         line-height: 1.3;
-      }
-      .hero-cta-wrap {
-        position: static;
-        justify-content: flex-start;
-        gap: 16px;
-        flex-wrap: wrap;
-        margin-top: 10px;
       }
     }
 
@@ -665,11 +593,13 @@
       display: grid;
       grid-template-columns: 1.1fr 1fr;
       gap: 16px;
+      height: 520px;
     }
     .story-main {
       position: relative;
       border-radius: 0 220px 220px 0;
       overflow: hidden;
+      height: 100%;
     }
     .story-main img {
       position: absolute;
@@ -687,15 +617,120 @@
       bottom: 0;
       left: 0;
       right: 0;
-      background: linear-gradient(0deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.1) 55%, transparent 100%);
-      padding: 24px 24px 20px;
+      background: linear-gradient(0deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.55) 40%, rgba(0,0,0,0.15) 70%, transparent 100%);
+      padding: 28px 28px 22px;
     }
     .story-main-title {
       color: #fff;
       font-size: 16px;
       font-weight: 600;
       line-height: 1.45;
-      max-width: 360px;
+      max-width: 340px;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.4);
+    }
+    .story-title-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .story-expand-btn {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(255,255,255,0.5);
+      background: rgba(255,255,255,0.12);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 2px;
+      -webkit-backdrop-filter: blur(4px);
+      backdrop-filter: blur(4px);
+    }
+    .story-expand-btn:hover {
+      background: rgba(255,255,255,0.25);
+      border-color: rgba(255,255,255,0.8);
+    }
+    .story-expand-btn svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      stroke-width: 2.2;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: transform 0.3s ease;
+    }
+    .story-expand-btn.expanded svg {
+      transform: rotate(180deg);
+    }
+    /* Details panel */
+    .story-details-panel {
+      position: absolute;
+      z-index: 3;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(10,10,20,0.92) 0%, rgba(20,15,40,0.95) 100%);
+      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(16px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 40px 36px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+    }
+    .story-details-panel.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    .story-details-title {
+      color: #fff;
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.4;
+      margin-bottom: 16px;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.3);
+    }
+    .story-details-desc {
+      color: rgba(255,255,255,0.85);
+      font-size: 15px;
+      line-height: 1.7;
+      max-width: 480px;
+    }
+    .story-details-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(255,255,255,0.4);
+      background: rgba(255,255,255,0.1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      -webkit-backdrop-filter: blur(4px);
+      backdrop-filter: blur(4px);
+    }
+    .story-details-close:hover {
+      background: rgba(255,255,255,0.25);
+      border-color: rgba(255,255,255,0.8);
+    }
+    .story-details-close svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
     .story-nav {
       margin-top: 12px;
@@ -742,6 +777,7 @@
       grid-template-columns: 1fr 1fr;
       grid-template-rows: 1fr 1fr;
       gap: 16px;
+      height: 100%;
     }
     .story-grid-item {
       position: relative;
@@ -762,7 +798,7 @@
     }
     @media (max-width: 1100px) {
       .story-main-title { font-size: 16px; }
-      .story-grid-item { min-height: 180px; }
+      .stories-layout { height: 440px; }
     }
     @media (max-width: 900px) {
       #success::before {
@@ -770,10 +806,10 @@
         height: 84px;
         border-radius: 0 0 84px 0;
       }
-      .stories-layout { grid-template-columns: 1fr; }
-      .story-main { border-radius: 18px; min-height: 300px; aspect-ratio: 16 / 9; }
-      .story-grid { grid-template-rows: auto auto; }
-      .story-grid-item { min-height: 160px; aspect-ratio: 1 / 1; }
+      .stories-layout { grid-template-columns: 1fr; height: auto; }
+      .story-main { border-radius: 18px; height: auto; aspect-ratio: 16 / 9; }
+      .story-grid { height: auto; }
+      .story-grid-item { aspect-ratio: 1 / 1; }
       .story-grid-item,
       .story-grid-item:nth-child(1),
       .story-grid-item:nth-child(2),
@@ -1794,7 +1830,6 @@
       }
       .hero-title { font-size: clamp(30px, 9vw, 42px); }
       .hero-sub { font-size: clamp(16px, 4.5vw, 22px); }
-      .hero-circle-btn { width: 130px; height: 130px; }
 
       /* ── AI-Powered Cards ── */
       .ai-card { min-height: 260px; }
@@ -2158,14 +2193,6 @@
       transform: translateY(0);
     }
 
-    /* ===== HERO CIRCLE BUTTON ENHANCED HOVER ===== */
-    .hero-circle-btn {
-      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-    .hero-circle-btn:hover {
-      transform: scale(1.06);
-    }
-
     /* ===== CONTACT MOSAIC SUBTLE ANIMATION ===== */
     .cm {
       transition: opacity 0.4s ease;
@@ -2193,7 +2220,6 @@
       .dexp-card,
       .btn-primary,
       .btn-outline,
-      .hero-circle-btn,
       .footer-col ul li a::after {
         transition: none !important;
       }
@@ -2244,25 +2270,6 @@
       <div class="hero-title-block">
         <h1 class="hero-title fade-up">Your Trusted Partner</h1>
         <p class="hero-sub fade-up fade-up-delay-1">Transformation, Optimization<br>And Consultation.</p>
-        <div class="hero-cta-wrap fade-up fade-up-delay-2">
-          <a href="#contact" class="hero-circle-btn" aria-label="Go to Get in Touch section">
-            <svg class="circle-text-svg" viewBox="0 0 160 160" fill="none" aria-hidden="true">
-              <defs>
-                <path id="heroCirclePath" d="M 80,80 m -62,0 a 62,62 0 1,1 124,0 a 62,62 0 1,1 -124,0" />
-              </defs>
-              <text font-family="Montserrat, sans-serif" font-size="11" font-weight="600" fill="rgba(255,255,255,0.85)" letter-spacing="3.5">
-                <textPath href="#heroCirclePath" startOffset="0%">
-                  GET IN TOUCH &#183; GET IN TOUCH &#183; GET IN TOUCH &#183;
-                </textPath>
-              </text>
-            </svg>
-            <div class="hero-circle-inner">
-              <svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M4 11h14M12 5l6 6-6 6"/>
-              </svg>
-            </div>
-          </a>
-        </div>
       </div>
     </div>
   </div>
@@ -2396,16 +2403,28 @@
     <div class="stories-layout fade-up">
       <!-- Main story -->
       <div class="story-main">
-        <img src="images/success-2/main.png" alt="Shamel - DANS" />
+        <img src="images/success-1/main.png" alt="Abu Dhabi Government" />
+        <div class="story-details-panel" id="storyDetailsPanel">
+          <button class="story-details-close" id="storyDetailsClose" aria-label="Close details">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8"/></svg>
+          </button>
+          <h3 class="story-details-title" id="storyDetailsTitle">Abu Dhabi Government Services Digital Platform</h3>
+          <p class="story-details-desc" id="storyDetailsDesc"></p>
+        </div>
         <div class="story-main-overlay">
-          <p class="story-main-title">Shamel: The Unified Platform of DANS (Dubai Air Navigation Services)</p>
+          <div class="story-title-row">
+            <p class="story-main-title">Abu Dhabi Government Services Digital Platform</p>
+            <button class="story-expand-btn" id="storyExpandBtn" aria-label="Show details">
+              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4"/></svg>
+            </button>
+          </div>
           <div class="story-nav">
             <button class="story-nav-btn prev" aria-label="Previous">
               <svg viewBox="0 0 16 16" aria-hidden="true">
                 <path d="M10.5 3.5L6 8l4.5 4.5"/>
               </svg>
             </button>
-            <span class="story-counter">2 / 5</span>
+            <span class="story-counter">1 / 2</span>
             <button class="story-nav-btn next" aria-label="Next">
               <svg viewBox="0 0 16 16" aria-hidden="true">
                 <path d="M5.5 3.5L10 8l-4.5 4.5"/>
@@ -2417,16 +2436,16 @@
       <!-- Story grid -->
       <div class="story-grid">
         <div class="story-grid-item">
-          <img src="images/success-2/OIP-3575725705 1.png" alt="Shamel detail 1" />
+          <img src="images/success-1/OIP-33511826 1.png" alt="Story detail 1" />
         </div>
         <div class="story-grid-item">
-          <img src="images/success-2/OIP-638987997 1.png" alt="Shamel detail 2" />
+          <img src="images/success-1/OIP-1301229597 1.png" alt="Story detail 2" />
         </div>
         <div class="story-grid-item">
-          <img src="images/success-2/OIP-749241801 1.png" alt="Shamel detail 3" />
+          <img src="images/success-1/OIP-1377806365 1.png" alt="Story detail 3" />
         </div>
         <div class="story-grid-item">
-          <img src="images/success-2/OIP-752188307 1.png" alt="Shamel detail 4" />
+          <img src="images/success-1/OIP-33511826 1.png" alt="Story detail 4" />
         </div>
       </div>
     </div>
@@ -2948,6 +2967,7 @@
       {
         mainImage: 'images/success-1/main.png',
         mainTitle: 'Abu Dhabi Government Services Digital Platform',
+        description: 'We partnered with Abu Dhabi Government to design and develop a unified digital services platform, streamlining citizen access to over 50 government services. The platform features AI-powered service recommendations, multilingual support, and a seamless mobile-first experience that reduced service completion time by 60%.',
         gridImages: [
           'images/success-1/OIP-33511826 1.png',
           'images/success-1/OIP-1301229597 1.png',
@@ -2958,6 +2978,7 @@
       {
         mainImage: 'images/success-2/main.png',
         mainTitle: 'Shamel: The Unified Platform of DANS (Dubai Air Navigation Services)',
+        description: 'Shamel is a comprehensive digital platform built for Dubai Air Navigation Services (DANS), unifying flight management, airspace coordination, and operational reporting into a single intelligent system. The platform integrates real-time data feeds, AI-driven analytics, and automated workflows to enhance aviation safety and operational efficiency across UAE airspace.',
         gridImages: [
           'images/success-2/OIP-3575725705 1.png',
           'images/success-2/OIP-638987997 1.png',
@@ -2975,11 +2996,17 @@
     var prevBtn    = document.querySelector('.story-nav-btn.prev');
     var nextBtn    = document.querySelector('.story-nav-btn.next');
     var gridItems  = document.querySelectorAll('.story-grid-item');
+    var expandBtn     = document.getElementById('storyExpandBtn');
+    var detailsPanel  = document.getElementById('storyDetailsPanel');
+    var detailsTitle  = document.getElementById('storyDetailsTitle');
+    var detailsDesc   = document.getElementById('storyDetailsDesc');
+    var detailsClose  = document.getElementById('storyDetailsClose');
 
     if (!storyMain || !mainImg || !mainTitle || !counter || !prevBtn || !nextBtn || gridItems.length < 4) return;
 
     /* ── State ── */
-    var current       = 1;          // matches the initial HTML (slide 2 = "Shamel")
+    var detailsOpen   = false;
+    var current       = 0;          // matches the initial HTML (slide 1)
     var total         = slides.length;
     var animating     = false;
     var autoTimer     = null;
@@ -3103,9 +3130,39 @@
     function goNext() { goToSlide(current + 1); }
     function goPrev() { goToSlide(current - 1); }
 
+    /* ── Details panel expand / collapse ── */
+    function openDetails() {
+      var slide = slides[current];
+      detailsTitle.textContent = slide.mainTitle;
+      detailsDesc.textContent = slide.description || '';
+      detailsPanel.classList.add('visible');
+      expandBtn.classList.add('expanded');
+      detailsOpen = true;
+      stopAuto();
+    }
+    function closeDetails() {
+      detailsPanel.classList.remove('visible');
+      expandBtn.classList.remove('expanded');
+      detailsOpen = false;
+      startAuto();
+    }
+    if (expandBtn) {
+      expandBtn.addEventListener('click', function () {
+        detailsOpen ? closeDetails() : openDetails();
+      });
+    }
+    if (detailsClose) {
+      detailsClose.addEventListener('click', function () {
+        closeDetails();
+      });
+    }
+
+    // Set initial description
+    detailsDesc.textContent = slides[0].description || '';
+
     /* ── Button clicks ── */
-    nextBtn.addEventListener('click', function () { userInteracted(); goNext(); });
-    prevBtn.addEventListener('click', function () { userInteracted(); goPrev(); });
+    nextBtn.addEventListener('click', function () { userInteracted(); if (detailsOpen) closeDetails(); goNext(); });
+    prevBtn.addEventListener('click', function () { userInteracted(); if (detailsOpen) closeDetails(); goPrev(); });
 
     /* ── Keyboard ── */
     storyMain.setAttribute('tabindex', '0');
@@ -3149,6 +3206,7 @@
     /* ── Auto-advance ── */
     function startAuto() {
       stopAuto();
+      if (detailsOpen) return;
       autoTimer = setInterval(goNext, AUTO_INTERVAL);
     }
 
