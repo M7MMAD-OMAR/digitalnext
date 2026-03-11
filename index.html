@@ -635,7 +635,7 @@
       display: grid;
       grid-template-columns: 1.12fr 1fr;
       gap: 16px;
-      align-items: stretch;
+      align-items: start;
     }
     .story-main {
       position: relative;
@@ -651,6 +651,7 @@
       object-fit: cover;
       display: block;
       z-index: 1;
+      color: transparent;
     }
     .story-main-overlay {
       position: absolute;
@@ -711,13 +712,12 @@
     .story-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
       gap: 16px;
     }
     .story-grid-item {
       position: relative;
       overflow: hidden;
-      min-height: 216px;
+      aspect-ratio: 1 / 1;
     }
     .story-grid-item:nth-child(1) { border-radius: 170px 0 0 0; }
     .story-grid-item:nth-child(2) { border-radius: 50%; }
@@ -730,10 +730,11 @@
       height: 100%;
       object-fit: cover;
       display: block;
+      color: transparent;
     }
     @media (max-width: 1100px) {
       .story-main-title { font-size: 16px; }
-      .story-grid-item { min-height: 180px; }
+      .story-grid-item { aspect-ratio: 1 / 1; }
     }
     @media (max-width: 900px) {
       #success::before {
@@ -1813,7 +1814,8 @@
       .meet-team-section .team-grid {
         grid-template-columns: 1fr;
         gap: 16px;
-        max-width: 100%;
+        max-width: 320px;
+        margin: 0 auto;
       }
       .meet-team-section .team-card {
         max-width: 100%;
@@ -1822,7 +1824,7 @@
       .meet-team-section .team-image {
         width: 100%;
         height: auto;
-        max-height: 400px;
+        max-height: 240px;
         object-fit: cover;
         object-position: top center;
       }
@@ -2255,7 +2257,7 @@
             <img src="images/Dynamic Personalization - lt.png" alt="" />
           </div>
           <div class="ai-card-text">
-            <h3>Dynamic Personalization</h3>
+            <h3>Driven by Customer Experience</h3>
             <p>Delivers tailored interactions and user experiences.</p>
           </div>
         </div>
