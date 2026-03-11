@@ -807,36 +807,7 @@
     /* ── Award rows list ── */
     .aw-list { width: 100%; }
 
-    /* ── Gallery strip (slides open under active row) ── */
-    .aw-row-gallery {
-      grid-column: 1 / -1;
-      display: grid;
-      grid-template-rows: 0fr;
-      transition: grid-template-rows 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .aw-row.active .aw-row-gallery {
-      grid-template-rows: 1fr;
-    }
-    .aw-gallery-inner {
-      overflow: hidden;
-      min-height: 0;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 8px;
-      opacity: 0;
-      transition: opacity 0.4s ease 0.15s;
-    }
-    .aw-row.active .aw-gallery-inner {
-      padding-top: 16px;
-      opacity: 1;
-    }
-    .aw-gallery-inner img {
-      width: 100%;
-      aspect-ratio: 4/3;
-      object-fit: cover;
-      border-radius: var(--radius-md);
-    }
-
+    /* ── Award row ── */
     .aw-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -845,6 +816,41 @@
       border-bottom: 1px solid rgba(255,255,255,0.1);
       cursor: pointer;
       position: relative;
+      z-index: 1;
+    }
+    .aw-row.active {
+      z-index: 2;
+    }
+
+    /* ── Gallery overlay (no layout shift) ── */
+    .aw-row-gallery {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      opacity: 0;
+      transform: translateY(-6px);
+      pointer-events: none;
+      transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 10;
+    }
+    .aw-row.active .aw-row-gallery {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .aw-gallery-inner {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      padding: 16px 0 20px;
+      background: var(--blue-600);
+      border-radius: 0 0 var(--radius-md) var(--radius-md);
+    }
+    .aw-gallery-inner img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: var(--radius-md);
     }
     .aw-row:first-child { border-top: 1px solid rgba(255,255,255,0.1); }
 
