@@ -977,7 +977,7 @@
     #partnerships {
       background: var(--section-bg-alt);
       padding: var(--section-py) 0;
-      min-height: 50vh;
+      min-height: 80vh;
       display: flex;
       align-items: center;
       overflow: hidden;
@@ -1033,7 +1033,7 @@
       flex-shrink: 0;
       border-radius: 50%;
       background: #fff;
-      border: 1.5px solid #B5B5BC;
+      border: none;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1041,6 +1041,16 @@
       box-sizing: border-box;
       user-select: none;
       -webkit-user-select: none;
+    }
+    /* 3 shape variants cycling */
+    .tp-logo-circle:nth-child(3n+1) {
+      border-radius: 50%;
+    }
+    .tp-logo-circle:nth-child(3n+2) {
+      border-radius: 0 0 50% 50%;
+    }
+    .tp-logo-circle:nth-child(3n+3) {
+      border-radius: 50% 50% 0 0;
     }
     .tp-logo-circle img {
       width: 100%;
@@ -2472,9 +2482,7 @@
           <div class="aw-row-title">Master Service Agreement — Dept. of Government Enablement</div>
           <div class="aw-row-gallery">
             <div class="aw-gallery-inner">
-              <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&q=80" alt="AI artificial intelligence visualization" loading="lazy" />
-              <img src="https://images.unsplash.com/photo-1555255707-c07966088b7b?w=600&q=80" alt="Neural network machine learning" loading="lazy" />
-              <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&q=80" alt="AI robotics technology" loading="lazy" />
+              <img src="images/iamge-2.png" alt="Master Service Agreement — Dept. of Government Enablement" loading="lazy" />
             </div>
           </div>
         </div>
@@ -2483,9 +2491,7 @@
           <div class="aw-row-title">Managed Services Agreement — Abu Dhabi Civil Defence</div>
           <div class="aw-row-gallery">
             <div class="aw-gallery-inner">
-              <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&q=80" alt="Digital strategy meeting" loading="lazy" />
-              <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&q=80" alt="Modern technology transformation" loading="lazy" />
-              <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80" alt="Business leadership presentation" loading="lazy" />
+              <img src="images/iamge-2.png" alt="Managed Services Agreement — Abu Dhabi Civil Defence" loading="lazy" />
             </div>
           </div>
         </div>
