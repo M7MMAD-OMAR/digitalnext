@@ -625,8 +625,13 @@
       bottom: 0;
       left: 0;
       right: 0;
-      background: linear-gradient(0deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.55) 40%, rgba(0,0,0,0.15) 70%, transparent 100%);
+      background: linear-gradient(0deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.65) 35%, rgba(0,0,0,0.35) 60%, rgba(0,0,0,0.1) 80%, transparent 100%);
       padding: 28px 28px 22px;
+      padding-right: 120px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
     }
     .story-main-title {
       color: #fff;
@@ -638,7 +643,7 @@
     }
     .story-title-row {
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       gap: 10px;
     }
     .story-expand-btn {
@@ -708,10 +713,10 @@
       cursor: pointer;
     }
     .story-nav {
-      margin-top: 12px;
       display: inline-flex;
       align-items: center;
       gap: 10px;
+      flex-shrink: 0;
     }
     .story-nav-btn {
       width: 34px;
@@ -1382,7 +1387,7 @@
     .meet-team-section .team-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 34px 30px;
+      gap: 48px 42px;
     }
     .meet-team-section .team-card {
       position: relative;
@@ -2398,12 +2403,12 @@
       <div class="story-main">
         <img src="images/success-1/main.png" alt="Abu Dhabi Government" />
         <div class="story-details-panel" id="storyDetailsPanel">
-          <h3 class="story-details-title" id="storyDetailsTitle">Abu Dhabi Government Services Digital Platform</h3>
+          <h3 class="story-details-title" id="storyDetailsTitle">Yas Platform — Diwan Al Dhafra</h3>
           <p class="story-details-desc" id="storyDetailsDesc"></p>
         </div>
         <div class="story-main-overlay">
           <div class="story-title-row">
-            <p class="story-main-title">Abu Dhabi Government Services Digital Platform</p>
+            <p class="story-main-title">Yas Platform — Diwan Al Dhafra</p>
             <button class="story-expand-btn" id="storyExpandBtn" aria-label="Show details">
               <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4"/></svg>
             </button>
@@ -2952,8 +2957,8 @@
     var slides = [
       {
         mainImage: 'images/success-1/main.png',
-        mainTitle: 'Abu Dhabi Government Services Digital Platform',
-        description: 'We partnered with Abu Dhabi Government to design and develop a unified digital services platform, streamlining citizen access to over 50 government services. The platform features AI-powered service recommendations, multilingual support, and a seamless mobile-first experience that reduced service completion time by 60%.',
+        mainTitle: 'Yas Platform — Diwan Al Dhafra',
+        description: 'Digital Next developed the Yas Platform for the Ruler\'s Representative Court in Al Dhafra Region (RRCDR), the governing body overseeing six cities across 60% of Abu Dhabi\'s area. The platform establishes a direct digital communication channel between the court and citizens, enabling them to interact with the court, participate in community initiatives, and update their information in real-time. Yas Platform transformed citizen-government engagement for one of Abu Dhabi\'s largest regions.',
         gridImages: [
           'images/success-1/OIP-33511826 1.png',
           'images/success-1/OIP-1301229597 1.png',
@@ -2963,13 +2968,24 @@
       },
       {
         mainImage: 'images/success-2/main.png',
-        mainTitle: 'Shamel: The Unified Platform of DANS (Dubai Air Navigation Services)',
-        description: 'Shamel is a comprehensive digital platform built for Dubai Air Navigation Services (DANS), unifying flight management, airspace coordination, and operational reporting into a single intelligent system. The platform integrates real-time data feeds, AI-driven analytics, and automated workflows to enhance aviation safety and operational efficiency across UAE airspace.',
+        mainTitle: 'Zero Bureaucracy',
+        description: 'As part of the UAE\'s national Zero Government Bureaucracy Programme, Digital Next contributed to building digital solutions that simplify and accelerate government procedures. The programme, launched under the directives of His Highness Sheikh Mohammed bin Rashid Al Maktoum, aims to eliminate over 2,000 unnecessary procedures and reduce processing times by 50%. Our solutions streamline workflows, remove redundant requirements, and deliver faster, smarter government services to citizens and residents.',
         gridImages: [
           'images/success-2/OIP-3575725705 1.png',
           'images/success-2/OIP-638987997 1.png',
           'images/success-2/OIP-749241801 1.png',
           'images/success-2/OIP-752188307 1.png'
+        ]
+      },
+      {
+        mainImage: 'images/success-3/main.png',
+        mainTitle: 'DANS — Dubai Airport',
+        description: 'Digital Next partnered with Dubai Air Navigation Services (DANS) to develop a comprehensive digital platform that unifies air traffic management, airspace coordination, and operational reporting. The platform integrates real-time data feeds, AI-driven analytics, and automated workflows to enhance aviation safety and operational efficiency across UAE airspace, supporting one of the world\'s busiest aviation hubs.',
+        gridImages: [
+          'images/success-3/1745415012183 1.png',
+          'images/success-3/20250623083253_Corporate Image 12 1.png',
+          'images/success-3/LOWRES_dans 1.png',
+          'images/success-3/1745415012183 1.png'
         ]
       }
     ];
