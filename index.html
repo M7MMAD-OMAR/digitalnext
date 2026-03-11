@@ -245,19 +245,19 @@
       position: absolute;
       top: 0;
       right: 0;
-      width: clamp(200px, 20vw, 300px);
       height: 100vh;
-      background: transparent;
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      align-items: flex-end;
       justify-content: center;
-      overflow: hidden;
+      gap: 24px;
+      padding-right: clamp(40px, 5vw, 80px);
       z-index: 3;
       pointer-events: none;
     }
-    .hero-shape-rail svg {
-      width: auto;
-      height: 100%;
+    .hero-letter {
+      width: clamp(100px, 10vw, 160px);
+      height: auto;
       display: block;
     }
     .hero-bg {
@@ -940,7 +940,6 @@
       background: var(--section-bg-alt);
       padding: var(--section-py) 0;
       overflow: hidden;
-      position: relative;
     }
     .tp-title-wrap {
       text-align: center;
@@ -990,57 +989,24 @@
       flex-shrink: 0;
       border-radius: 50%;
       background: #fff;
-      border: 1px solid #CBCBD0;
+      border: 1.5px solid #B5B5BC;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 35px;
       box-sizing: border-box;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-      transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                  box-shadow 0.3s ease;
-    }
-    .tp-logo-circle:hover {
-      transform: translateY(-3px) scale(1.04);
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+      user-select: none;
+      -webkit-user-select: none;
     }
     .tp-logo-circle img {
       width: 100%;
       height: 100%;
       object-fit: contain;
       display: block;
-    }
-
-    /* Background shapes */
-    .tp-bg-shapes {
-      position: absolute;
-      inset: 0;
       pointer-events: none;
-      overflow: hidden;
-      z-index: 0;
+      -webkit-user-drag: none;
+      user-select: none;
     }
-    .tp-bg-shape {
-      position: absolute;
-      border-radius: 50%;
-      opacity: 0.06;
-    }
-    .tp-bg-shape--1 {
-      width: 340px; height: 340px;
-      background: var(--primary-500);
-      top: -100px; left: -80px;
-    }
-    .tp-bg-shape--2 {
-      width: 280px; height: 280px;
-      background: var(--blue-500);
-      bottom: -80px; right: -60px;
-    }
-    .tp-bg-shape--3 {
-      width: 200px; height: 200px;
-      background: var(--primary-400);
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-    }
-    #partnerships .container { position: relative; z-index: 1; }
 
     /* Dots */
     .tp-dots {
@@ -1075,9 +1041,6 @@
       .tp-logo-circle { width: 130px; height: 130px; padding: 22px; }
       .tp-slide { gap: 16px; padding: 0 10px; }
       .tp-dots { margin-top: 28px; }
-      .tp-bg-shape--1 { width: 260px; height: 260px; }
-      .tp-bg-shape--2 { width: 200px; height: 200px; }
-      .tp-bg-shape--3 { width: 150px; height: 150px; }
     }
 
     /* ===================== RESEARCH ===================== */
@@ -2561,12 +2524,6 @@
 
 <!-- ===================== PARTNERSHIPS ===================== -->
 <section id="partnerships">
-  <!-- Decorative background shapes -->
-  <div class="tp-bg-shapes" aria-hidden="true">
-    <div class="tp-bg-shape tp-bg-shape--1"></div>
-    <div class="tp-bg-shape tp-bg-shape--2"></div>
-    <div class="tp-bg-shape tp-bg-shape--3"></div>
-  </div>
   <div class="container">
 
     <div class="tp-title-wrap fade-up">
