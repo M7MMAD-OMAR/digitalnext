@@ -937,6 +937,40 @@
       .aw-row-desc { padding-top: 0; }
     }
 
+    /* ── Award Lightbox ── */
+    .aw-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0,0,0,0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      transition: background 0.4s ease;
+      cursor: zoom-out;
+    }
+    .aw-lightbox.active {
+      background: rgba(0,0,0,0.85);
+      pointer-events: auto;
+    }
+    .aw-lightbox img {
+      max-width: 90vw;
+      max-height: 85vh;
+      object-fit: contain;
+      border-radius: 8px;
+      transform: scale(0.8);
+      opacity: 0;
+      transition: transform 0.4s cubic-bezier(0.25,0.8,0.25,1), opacity 0.4s ease;
+    }
+    .aw-lightbox.active img {
+      transform: scale(1);
+      opacity: 1;
+    }
+    .aw-gallery-inner img {
+      cursor: zoom-in;
+    }
+
     /* ===================== PARTNERSHIPS ===================== */
     #partnerships {
       background: var(--section-bg-alt);
@@ -2780,6 +2814,36 @@
     });
   })();
 
+  // ── Award Lightbox ──
+  (function() {
+    var lightbox = document.getElementById('awLightbox');
+    if (!lightbox) return;
+    var lbImg = lightbox.querySelector('img');
+
+    document.querySelectorAll('.aw-gallery-inner img').forEach(function(img) {
+      img.addEventListener('click', function(e) {
+        e.stopPropagation();
+        lbImg.src = img.src;
+        lbImg.alt = img.alt;
+        requestAnimationFrame(function() {
+          lightbox.classList.add('active');
+        });
+      });
+    });
+
+    lightbox.addEventListener('click', function() {
+      lightbox.classList.remove('active');
+      setTimeout(function() { lbImg.src = ''; }, 400);
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+        lightbox.classList.remove('active');
+        setTimeout(function() { lbImg.src = ''; }, 400);
+      }
+    });
+  })();
+
   // Partnerships Logo Carousel
   (function() {
     var track = document.getElementById('tpTrack');
@@ -3320,6 +3384,12 @@
   })();
 
 </script>
+
+<!-- Award Lightbox -->
+<div class="aw-lightbox" id="awLightbox">
+  <img src="" alt="" />
+</div>
+
 </body>
 </html>
 
